@@ -1,14 +1,15 @@
 # fulcro
 
-A Leiningen template for FIXME.
+A Leiningen template for Fulcro.
 
 ## Usage
 
-FIXME
+```
+lein new fulcro project-name
+```
 
 ## License
 
-Copyright © 2017 FIXME
+Copyright © 2017 Fulcrologic
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the MIT Public License.
