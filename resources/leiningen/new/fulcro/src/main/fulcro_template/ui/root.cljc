@@ -49,7 +49,9 @@
   (render [this]
     (let [{:keys [ui/locale available-locales]} (om/props this)]
       (dom/div nil "Locale:" (map (fn [[k v]]
-                                    (dom/a #js {:onClick #(om/transact! this `[(m/change-locale {:lang ~k})])} v)) available-locales)))))
+                                    (dom/a #js {:href    "#"
+                                                :style   #js {:padding-right "5px"}
+                                                :onClick #(om/transact! this `[(m/change-locale {:lang ~k})])} v)) available-locales)))))
 
 (def ui-locale (om/factory LocaleSelector))
 

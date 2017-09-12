@@ -1,6 +1,6 @@
-(defproject fulcro/lein-template "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+(defproject fulcro/lein-template "1.0.0"
+  :description "A bare-bones template for new Fulcro full-stack projects."
+  :url "https://fulcrologic.github.io/fulcro"
+  :license {:name "MIT"
+            :url "https://opensource.org/licenses/MIT"}
   :eval-in-leiningen true)

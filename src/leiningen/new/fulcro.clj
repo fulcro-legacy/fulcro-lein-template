@@ -11,7 +11,6 @@
               :sanitized (name-to-path name)}]
     (main/info "Generating Fulcro project.")
     (->files data
-      ["src/{{sanitized}}/foo.clj" (render "foo.clj" data)]
       [".gitignore" (render "gitignore" data)]
       ["i18n/es.po" (render "i18n/es.po" data)]
       ["i18n/messages.pot" (render "i18n/messages.pot" data)]
@@ -24,10 +23,8 @@
       ["script/figwheel.clj" (render "script/figwheel.clj" data)]
       ["src/cards/{{sanitized}}/cards.cljs" (render "src/cards/fulcro_template/cards.cljs" data)]
       ["src/cards/{{sanitized}}/intro.cljs" (render "src/cards/fulcro_template/intro.cljs" data)]
-      ["src/dev/cljs" (render "src/dev/cljs" data)]
       ["src/dev/cljs/user.cljs" (render "src/dev/cljs/user.cljs" data)]
       ["src/dev/user.clj" (render "src/dev/user.clj" data)]
-      ["src/main/config" (render "src/main/config" data)]
       ["src/main/config/defaults.edn" (render "src/main/config/defaults.edn" data)]
       ["src/main/config/dev.edn" (render "src/main/config/dev.edn" data)]
       ["src/main/config/prod.edn" (render "src/main/config/prod.edn" data)]
