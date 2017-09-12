@@ -1,4 +1,4 @@
-(ns fulcro-template.client
+(ns {{name}}.client
   (:require [om.next :as om]
             [fulcro.client.core :as fc]))
 

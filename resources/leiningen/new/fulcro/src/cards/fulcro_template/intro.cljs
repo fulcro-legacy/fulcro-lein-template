@@ -1,7 +1,7 @@
-(ns fulcro-template.intro
+(ns {{name}}.intro
   (:require [devcards.core :as rc :refer-macros [defcard]]
             [om.next :as om :refer-macros [defui]]
-            [fulcro-template.ui.components :as comp]
+            [{{name}}.ui.components :as comp]
             [om.dom :as dom]))
 
 (defcard SVGPlaceholder

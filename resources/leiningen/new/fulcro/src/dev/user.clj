@@ -5,7 +5,7 @@
     [figwheel-sidecar.system :as fig]
     [fulcro-spec.suite :as suite]
     [fulcro-spec.selectors :as sel]
-    fulcro-template.server))
+    {{name}}.server))
 
 ;;FIGWHEEL
 (def figwheel (atom nil))
@@ -45,7 +45,7 @@
 
 (defn- init []
   {:pre [(not (started? @system))]}
-  (when-let [new-system (fulcro-template.server/build-server {:config "config/dev.edn"})]
+  (when-let [new-system ({{name}}.server/build-server {:config "config/dev.edn"})]
     (reset! system new-system)))
 
 (defn- start []

@@ -1,9 +1,9 @@
-(ns fulcro-template.server
+(ns {{name}}.server
   (:require
     [fulcro.easy-server :refer [make-fulcro-server]]
     ; MUST require these, or you won't get them installed.
-    [fulcro-template.api.read]
-    [fulcro-template.api.mutations]))
+    [{{name}}.api.read]
+    [{{name}}.api.mutations]))
 
 (defn build-server
   [{:keys [config] :or {config "config/dev.edn"}}]

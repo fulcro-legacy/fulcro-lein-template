@@ -1,4 +1,4 @@
-(ns fulcro-template.ui.root
+(ns {{name}}.ui.root
   (:require
     [fulcro.client.core :as fc]
     [fulcro.client.mutations :as m]
@@ -6,7 +6,7 @@
     [fulcro.client.data-fetch :as df]
     translations.es                                         ; preload translations by requiring their namespace. See Makefile for extraction/generation
     [om.dom :as dom]
-    [fulcro-template.api.mutations :as api]
+    [{{name}}.api.mutations :as api]
     [om.next :as om :refer [defui]]
     [fulcro.i18n :refer [tr trf]]))
 

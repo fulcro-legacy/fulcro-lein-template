@@ -1,4 +1,4 @@
-(ns fulcro-template.api.mutations
+(ns {{name}}.api.mutations
   (:require
     [fulcro.client.mutations :refer [defmutation]]
     [fulcro.client.logging :as log]))

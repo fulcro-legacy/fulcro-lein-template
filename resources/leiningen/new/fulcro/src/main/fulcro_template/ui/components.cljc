@@ -1,4 +1,4 @@
-(ns fulcro-template.ui.components
+(ns {{name}}.ui.components
   (:require
     [om.next :as om :refer [defui]]
     [om.dom :as dom]))

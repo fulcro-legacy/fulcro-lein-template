@@ -1,4 +1,4 @@
-(ns fulcro-template.api.read
+(ns {{name}}.api.read
   (:require
     [fulcro.server :refer [defquery-entity defquery-root]]
     [taoensso.timbre :as timbre]))
