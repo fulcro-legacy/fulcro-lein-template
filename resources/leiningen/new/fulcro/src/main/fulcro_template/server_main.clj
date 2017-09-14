@@ -12,5 +12,5 @@
 
 ;; This is a separate file for the uberjar only. We control the server in dev mode from src/dev/user.clj
 (defn -main [& args]
-  (let [system (build-server config-path)]
+  (let [system (build-server {:config config-path})]
     (component/start system)))

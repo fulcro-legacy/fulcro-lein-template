@@ -8,7 +8,7 @@
                  [fulcrologic/fulcro "1.0.0-beta10"]
                  [fulcrologic/fulcro-spec "1.0.0-beta9" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
-  :uberjar-name "fulcro_template.jar"
+  :uberjar-name "{{sanitized}}.jar"
 
   :source-paths ["src/main"]
   :test-paths ["src/test"]

@@ -7,7 +7,7 @@ The main project source is in `src/main`.
 │   ├── defaults.edn
 │   ├── dev.edn
 │   └── prod.edn
-├── fulcro_template
+├── {{sanitized}}
 │   ├── api
 │   │   ├── mutations.clj      server-side version of mutations
 │   │   ├── mutations.cljs     client-side version of mutations
@@ -51,13 +51,19 @@ user=> (restart) ; stop, reload server code, and go again
 user=> (tools-ns/refresh) ; retry code reload if hot server reload fails
 ```
 
+The URLs are:
+
+- Client (using server): [http://localhost:3000](http://localhost:3000)
+- Cards: [http://localhost:3449/cards.html](http://localhost:3449/cards.html)
+- Tests: See below.
+
 ## Tests
 
 Tests are in `src/test`
 
 ```
 src/test
-└── fulcro_template
+└── {{sanitized}}
     ├── CI_runner.cljs            entry point for CI (doo) runner for client tests
     ├── client_test_main.cljs     entry point for dev-mode client tests
     ├── sample_spec.cljc          spec runnable by client and server. No "main" needed for server (clj) tests
@@ -135,5 +141,5 @@ make i18n-generate
 
 ```
 lein uberjar
-java -jar target/fulcro_template.jar
+java -jar target/{{sanitized}}.jar
 ```
