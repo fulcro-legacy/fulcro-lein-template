@@ -1,24 +1,17 @@
 # Change Log
-All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [Unreleased]
-### Changed
-- Add a new arity to `make-widget-async` to provide a different widget shape.
+1.0.4
+- Added support for figwheel port in run configs to allow for multiple
+parallel figwheel instances. See the README and dev/user.clj.
 
-## [0.1.1] - 2017-09-11
-### Changed
-- Documentation on how to make the widgets.
+1.0.3
+- Some minor naming fixes
 
-### Removed
-- `make-widget-sync` - we're all async, all the time.
+1.0.2
+- Fixed compiler version
 
-### Fixed
-- Fixed widget maker to keep working when daylight savings switches over.
+1.0.1
+- Minor tweaks
 
-## 0.1.0 - 2017-09-11
-### Added
-- Files from the new template.
-- Widget maker public API - `make-widget-sync`.
-
-[Unreleased]: https://github.com/your-name/fulcro/compare/0.1.1...HEAD
-[0.1.1]: https://github.com/your-name/fulcro/compare/0.1.0...0.1.1
+1.0.0
+- First release

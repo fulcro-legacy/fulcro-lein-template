@@ -39,6 +39,20 @@ dev:cljs.user=> :cljs/quit      ; switch REPL to a different build
 Or use a plain REPL in IntelliJ with JVM options of `-Ddev -Dtest -Dcards` and parameters of
 `script/figwheel.clj`.
 
+For a faster hot code reload experience, run only the build that matters to you at the time,
+
+Running multiple builds in one figwheel can slow down hot code reload. You can also
+run multiple separate figwheel instances to leverage more of your CPU cores, and
+an additional system property can be used to allow this (by allocating different network ports
+to figwheel instances):
+
+```
+# Assuming one per terminal window...each gets a REPL that expects STDIN/STDOUT.
+JVM_OPTS="-Ddev -Dfigwheel.port=8081" lein run -m clojure.main script/figwheel.clj
+JVM_OPTS="-Dtest -Dfigwheel.port=8082" lein run -m clojure.main script/figwheel.clj
+JVM_OPTS="-Dcards -Dfigwheel.port=8083" lein run -m clojure.main script/figwheel.clj
+```
+
 Running the server:
 
 Start a clj REPL in IntelliJ, or from the command line:
