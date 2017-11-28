@@ -6,10 +6,15 @@
 
 (defn fulcro
   "Generates a simple Fulcro template project"
-  [name]
-  (let [data {:name      name
-              :sanitized (name-to-path name)}]
-    (main/info "Generating Fulcro project.")
+  [name & add-ons]
+  (let [add-ons  (set add-ons)
+        v2?      (contains? add-ons "v2")
+        data     {:name      name
+                  :v2?       v2?
+                  :sanitized (name-to-path name)}
+        base-dir (if v2? "2.x/" "1.x/")
+        render   (fn [filename data] (render (str base-dir filename) data))]
+    (main/info "Generating Fulcro project with options " add-ons)
     (->files data
       [".gitignore" (render "gitignore" data)]
       ["i18n/es.po" (render "i18n/es.po" data)]
