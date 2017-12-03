@@ -11,7 +11,7 @@
     [fulcro.i18n :refer [tr trf]]))
 
 (defui ^:once Main
-  static fc/InitialAppState
+  static prim/InitialAppState
   (initial-state [c p] {:main/meaning-of-life "unknown" :ui/ping-number 0})
   static prim/Ident
   (ident [this props] [:ui-components/by-id :main])
@@ -38,7 +38,7 @@
 (def ui-main (prim/factory Main))
 
 (defui ^:once LocaleSelector
-  static fc/InitialAppState
+  static prim/InitialAppState
   (initial-state [c p] {:available-locales {"en" "English" "es" "Spanish"}})
   static prim/Ident
   (ident [this props] [:ui-components/by-id :locale-selector])
@@ -56,8 +56,8 @@
 (def ui-locale (prim/factory LocaleSelector))
 
 (defui ^:once Root
-  static fc/InitialAppState
-  (initial-state [c p] {:ui/main (fc/get-initial-state Main nil) :ui/locale-selector (fc/get-initial-state LocaleSelector {})})
+  static prim/InitialAppState
+  (initial-state [c p] {:ui/main (prim/get-initial-state Main nil) :ui/locale-selector (prim/get-initial-state LocaleSelector {})})
   static prim/IQuery
   (query [this] [:ui/locale :ui/react-key {:ui/main (prim/get-query Main)} {:ui/locale-selector (prim/get-query LocaleSelector)}])
   Object
