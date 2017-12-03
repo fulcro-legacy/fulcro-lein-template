@@ -1,6 +1,6 @@
 (ns cljs.user
   (:require
-    [fulcro.client.core :as fc]
+    [fulcro.client :as fc]
     [{{name}}.client :as core]
     [{{name}}.ui.root :as root]
     [cljs.pprint :refer [pprint]]

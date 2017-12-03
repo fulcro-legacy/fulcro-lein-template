@@ -1,6 +1,6 @@
 (ns {{name}}.ui.root
   (:require
-    [fulcro.client.core :as fc]
+    [fulcro.client :as fc]
     [fulcro.client.mutations :as m]
     [fulcro.client.logging :as log]
     [fulcro.client.data-fetch :as df]
