@@ -8,11 +8,11 @@
   "Generates a simple Fulcro template project"
   [name & add-ons]
   (let [add-ons  (set add-ons)
-        v2?      (contains? add-ons "v2")
+        v1?      (contains? add-ons "v1")
         data     {:name      name
-                  :v2?       v2?
+                  :v1?       v1?
                   :sanitized (name-to-path name)}
-        base-dir (if v2? "2.x/" "1.x/")
+        base-dir (if v1? "1.x/" "2.x/")
         render   (fn [filename data] (render (str base-dir filename) data))]
     (main/info "Generating Fulcro project with options " add-ons)
     (->files data

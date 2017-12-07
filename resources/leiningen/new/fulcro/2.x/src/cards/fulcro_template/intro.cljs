@@ -1,8 +1,6 @@
 (ns {{name}}.intro
   (:require [devcards.core :as rc :refer-macros [defcard]]
-            [fulcro.client.primitives :as prim :refer-macros [defui]]
-            [{{name}}.ui.components :as comp]
-            [fulcro.client.dom :as dom]))
+            [{{name}}.ui.components :as comp]))
 
 (defcard SVGPlaceholder
   "# SVG Placeholder"

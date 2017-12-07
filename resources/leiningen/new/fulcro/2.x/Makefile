@@ -4,6 +4,7 @@ test:
 	lein test-refresh :run-once
 
 i18n-extract:
+	@rm -rf target/
 	@echo "Building Clojurescript"
 	@lein cljsbuild once i18n
 	@echo "Running extraction"
