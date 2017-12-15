@@ -71,6 +71,12 @@ The URLs are:
 - Cards: [http://localhost:3449/cards.html](http://localhost:3449/cards.html)
 - Tests: See below.
 
+## Fulcro Inspect
+
+The Fulcro inspect to will preload. You can activate it by pressing CTRL-F while
+in the application (dev mode only). If you need
+a different keyboard shortcut (e.g. for Windows) see the docs on github.
+
 ## Tests
 
 Tests are in `src/test`
