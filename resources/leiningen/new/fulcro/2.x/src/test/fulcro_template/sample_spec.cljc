@@ -2,8 +2,8 @@
   (:require
     [fulcro-spec.core :refer [specification provided behavior assertions]]))
 
-; These tests will run for both client and server
-(specification "Server Math"
+; Tests for both client and server
+(specification "Sample Spec"
   (behavior "addition computes addition correctly"
     (assertions
       "with positive integers"

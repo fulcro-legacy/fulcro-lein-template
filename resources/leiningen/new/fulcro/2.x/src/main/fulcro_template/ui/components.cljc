@@ -3,6 +3,7 @@
     [fulcro.client.primitives :as prim :refer [defsc]]
     [fulcro.client.dom :as dom]))
 
+;; A good place to put reusable components
 (defsc PlaceholderImage [this {:keys [w h label]}]
   (let [label (or label (str w "x" h))]
     (dom/svg #js {:width w :height h}

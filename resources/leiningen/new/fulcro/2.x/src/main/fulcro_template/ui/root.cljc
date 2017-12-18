@@ -8,6 +8,9 @@
     [fulcro.client.primitives :as prim :refer [defsc]]
     [fulcro.i18n :refer [tr trf]]))
 
+;; The main UI of your application
+
+{{#demo?}}
 (defn meaning-render [component load-markers which-meaning known-meaning]
   (let [load-marker (get load-markers which-meaning)
         meaning     (cond
@@ -59,3 +62,8 @@
   (dom/div #js {:key react-key}
     (ui-locale locale-selector)
     (ui-meaning meaning)))
+{{/demo?}}
+{{#nodemo?}}
+(defsc Root [this {:keys [ui/react-key]}]
+  (dom/div nil "TODO"))
+{{/nodemo?}}
