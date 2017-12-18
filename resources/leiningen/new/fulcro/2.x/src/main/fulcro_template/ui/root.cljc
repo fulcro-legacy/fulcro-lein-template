@@ -65,5 +65,5 @@
 {{/demo?}}
 {{#nodemo?}}
 (defsc Root [this {:keys [ui/react-key]}]
-  (dom/div nil "TODO"))
+  (dom/div #js {:key react-key} "TODO"))
 {{/nodemo?}}
