@@ -3,9 +3,9 @@
   :license {:name "MIT" :url "https://opensource.org/licenses/MIT"}
   :min-lein-version "2.7.0"
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.9.946"]
-                 [fulcrologic/fulcro "2.0.0-RC2"]
+                 [fulcrologic/fulcro "2.1.0"]
                  [fulcrologic/fulcro-spec "2.0.0-beta3" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
@@ -15,8 +15,8 @@
   :clean-targets ^{:protect false} ["target" "resources/public/js" "resources/private"]
 
   ; Notes  on production build:
-  ; - The hot code reload stuff in the dev profile WILL BREAK ADV COMPILATION. So, make sure you
-  ; use `lein with-profile production cljsbuild once production` to build!
+  ; To limit possible dev config interference with production builds
+  ; Use `lein with-profile production cljsbuild once production`
   :cljsbuild {:builds [{:id           "production"
                         :source-paths ["src/main"]
                         :jar          true
@@ -97,7 +97,7 @@
                                          [com.jakemccrary/lein-test-refresh "0.17.0"]]
 
                           :dependencies [[binaryage/devtools "0.9.7"]
-                                         [fulcrologic/fulcro-inspect "2.0.0-alpha1"]
+                                         [fulcrologic/fulcro-inspect "2.0.0-alpha4"]
                                          [org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
                                          [com.cemerick/piggieback "0.2.2"]
