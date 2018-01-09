@@ -53,17 +53,17 @@
 
 (def ui-locale (prim/factory LocaleSelector))
 
-(defsc Root [this {:keys [ui/react-key root/meaning ui/locale-selector] :or {react-key "ROOT"}}]
+(defsc Root [this {:keys [root/meaning ui/locale-selector] :or {react-key "ROOT"}}]
   {:initial-state (fn [p] {:root/meaning       (prim/get-initial-state Meaning nil)
                            :ui/locale-selector (prim/get-initial-state LocaleSelector {})})
-   :query         [:ui/locale :ui/react-key
+   :query         [:ui/locale
                    {:root/meaning (prim/get-query Meaning)}
                    {:ui/locale-selector (prim/get-query LocaleSelector)}]}
-  (dom/div #js {:key react-key}
+  (dom/div nil
     (ui-locale locale-selector)
     (ui-meaning meaning)))
 {{/demo?}}
 {{#nodemo?}}
-(defsc Root [this {:keys [ui/react-key]}]
-  (dom/div #js {:key react-key} "TODO"))
+(defsc Root [this props]
+  (dom/div nil "TODO"))
 {{/nodemo?}}
