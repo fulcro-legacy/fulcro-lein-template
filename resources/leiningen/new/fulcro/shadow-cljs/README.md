@@ -7,24 +7,23 @@ The main project source is in `src/main`.
 │   ├── defaults.edn
 │   ├── dev.edn
 │   └── prod.edn
-├── boo
-│   ├── api
-│   │   ├── mutations.clj      server-side version of mutations
-│   │   ├── mutations.cljs     client-side version of mutations
-│   │   └── read.clj           server implementation of reads
-│   ├── client.cljs            client creation (shared among dev/prod)
-│   ├── client_main.cljs       production client main
-│   ├── server.clj             server creation (shared among dev/prod)
-│   ├── server_main.clj        production server main
-│   └── ui
-│       ├── components.cljc    a sample component
-│       └── root.cljc          the root UI
-└── translations
-    └── es.cljc                Spanish translations of strings on client UI
+├── fulcro-template
+    ├── api
+    │   ├── mutations.clj      server-side version of mutations
+    │   ├── mutations.cljs     client-side version of mutations
+    │   └── read.clj           server implementation of reads
+    ├── client.cljs            client creation (shared among dev/prod)
+    ├── server.clj             server creation (shared among dev/prod)
+    ├── server_main.clj        production server main
+    └── ui
+        ├── components.cljc    a sample component
+        └── root.cljc          the root UI
 ```
 
 ## Development Mode
 
+Shadow-cljs handles the client-side development build. There is a file
+in `src/dev/starter/browser.cljs`
 Special code for working in dev mode is in `src/dev`, which is not on
 the build for production builds.
 
@@ -81,7 +80,7 @@ Tests are in `src/test`
 
 ```
 src/test
-└── boo
+└── fulcro-template
     ├── CI_runner.cljs            entry point for CI (doo) runner for client tests
     ├── client_test_main.cljs     entry point for dev-mode client tests
     ├── sample_spec.cljc          spec runnable by client and server. No "main" needed for server (clj) tests
@@ -159,5 +158,5 @@ make i18n-generate
 
 ```
 lein uberjar
-java -jar target/boo.jar
+java -jar target/fulcro-template.jar
 ```

@@ -1,6 +1,6 @@
-(ns boo.intro
+(ns fulcro-template.intro
   (:require [devcards.core :as rc :refer-macros [defcard]]
-            [boo.ui.components :as comp]))
+            [fulcro-template.ui.components :as comp]))
 
 (defcard SVGPlaceholder
   "# SVG Placeholder"

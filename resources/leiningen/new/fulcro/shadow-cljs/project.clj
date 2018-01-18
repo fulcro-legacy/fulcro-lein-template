@@ -1,4 +1,4 @@
-(defproject boo "0.1.0-SNAPSHOT"
+(defproject fulcro-template "0.1.0-SNAPSHOT"
   :description "My Cool Project"
   :license {:name "MIT" :url "https://opensource.org/licenses/MIT"}
   :min-lein-version "2.7.0"
@@ -8,12 +8,12 @@
                  [fulcrologic/fulcro "2.1.0"]
                  [fulcrologic/fulcro-spec "2.0.0-beta3" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
-  :uberjar-name "boo.jar"
+  :uberjar-name "fulcro-template.jar"
 
   :source-paths ["src/dev" "src/main" "src/cards" "src/test"]
   :test-paths ["src/test"]
 
-  :clean-targets ^{:protect false} ["target" "resources/public/js" "resources/private"]
+  :clean-targets ^{:protect false} ["target" "out" "resources/public/js/cards" "resources/public/js/main" "resources/public/js/test/js" ]
 
   :aliases {"dev"  ["run" "-m" "shadow.cljs.devtools.cli" "watch" "app" "test" "cards"]
             "i18n" ["run" "-m" "shadow.cljs.devtools.cli" "compile" "i18n"]
@@ -23,7 +23,7 @@
                  :with-repl    true
                  :changes-only true}
 
-  :profiles {:uberjar    {:main           boo.server-main
+  :profiles {:uberjar    {:main           fulcro-template.server-main
                           :aot            :all
                           :jar-exclusions [#"public/js/prod" #"com/google.*js$"]
                           :prep-tasks     ["clean" ["clean"]

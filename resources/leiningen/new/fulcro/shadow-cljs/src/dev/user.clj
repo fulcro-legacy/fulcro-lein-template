@@ -4,7 +4,7 @@
     [com.stuartsierra.component :as component]
     [fulcro-spec.suite :as suite]
     [fulcro-spec.selectors :as sel]
-    boo.server))
+    fulcro-template.server))
 
 ;; ==================== SERVER ====================
 
@@ -21,7 +21,7 @@
 
 (defn- init []
   {:pre [(not (started? @system))]}
-  (when-let [new-system (boo.server/build-server {:config "config/dev.edn"})]
+  (when-let [new-system (fulcro-template.server/build-server {:config "config/dev.edn"})]
     (reset! system new-system)))
 
 (defn- start []

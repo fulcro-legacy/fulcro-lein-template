@@ -1,4 +1,4 @@
-(ns boo.sample-spec
+(ns fulcro-template.sample-spec
   (:require
     [fulcro-spec.core :refer [specification provided behavior assertions]]))
 

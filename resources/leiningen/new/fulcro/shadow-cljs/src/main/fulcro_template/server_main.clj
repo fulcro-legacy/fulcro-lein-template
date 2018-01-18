@@ -1,9 +1,9 @@
-(ns boo.server-main
+(ns fulcro-template.server-main
   (:require
     [com.stuartsierra.component :as component]
     [fulcro.server :as c]
     [taoensso.timbre :as timbre]
-    [boo.server :refer [build-server]])
+    [fulcro-template.server :refer [build-server]])
   (:gen-class))
 
 ; It is recommended that your production config be on the server itself in a directory. We have placed a

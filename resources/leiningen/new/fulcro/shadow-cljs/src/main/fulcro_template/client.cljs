@@ -1,6 +1,6 @@
-(ns boo.client
+(ns fulcro-template.client
   (:require [fulcro.client :as fc]
-            [boo.ui.root :as root]))
+            [fulcro-template.ui.root :as root]))
 
 (defonce app (atom (fc/new-fulcro-client)))
 

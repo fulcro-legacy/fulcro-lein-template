@@ -1,4 +1,4 @@
-(ns boo.api.mutations
+(ns fulcro-template.api.mutations
   (:require
     [taoensso.timbre :as timbre]
     [fulcro.server :refer [defmutation]]))
