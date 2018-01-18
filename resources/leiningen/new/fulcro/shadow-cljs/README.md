@@ -140,12 +140,13 @@ make tests
 ```
 
 You must have `npm` and Chrome installed. The tests use the `npm`
-utility Karma for actually running the tests.
+utility Karma for actually running the tests. This target will run
+both client and server tests.
 
 ## Dev Cards
 
-The source is in `src/cards`.
-To add a new card namespace, remember to add a require for it to the `cards.cljs` file.
+The source is in `src/cards`. Remember to add devcard files here, and add
+a require the for new card namespace to the `cards.cljs` file.
 
 ## I18N
 

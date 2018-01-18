@@ -1,8 +1,8 @@
 test:
-	npm install
-	shadow-cljs compile ci-tests
-	karma start --single-run
-	lein test-refresh :run-once
+	#npm install
+	npx shadow-cljs compile ci-tests
+	npx karma start --single-run
+	lein do clean, test-refresh :run-once # clean is needed in case AOT stuff is around
 
 i18n-extract:
 	@echo "Building Clojurescript"
