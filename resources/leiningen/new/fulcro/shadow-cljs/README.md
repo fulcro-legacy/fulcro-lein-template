@@ -52,6 +52,30 @@ The main project source is in `src/main`.
             └── sample_spec.cljc       ; a sample spec in fulcro-spec
 ```
 
+## Setting Up
+
+The shadow-cljs compiler uses all cljsjs and NPM js dependencies through
+NPM. If you use a library that is in cljsjs you will also have to add
+it to your `package.json`.
+
+You also cannot compile this project until you install the ones it
+depends on already:
+
+```
+$ npm install
+```
+
+or if you prefer `yarn`:
+
+```
+$ yarn install
+```
+
+Adding NPM Javascript libraries is as simple as adding them to your
+`package.json` file and requiring them! See the
+[the Shadow-cljs User's Guide](https://shadow-cljs.github.io/docs/UsersGuide.html#_javascript)
+for more information.
+
 ## Development Mode
 
 Shadow-cljs handles the client-side development build. The  file
