@@ -2,6 +2,14 @@
   (:require [fulcro.client :as fc]
             [{{name}}.ui.root :as root]))
 
-(defonce app (atom (fc/new-fulcro-client)))
+(defonce app (atom nil))
 
-(defn mount [] (reset! app (fc/mount @app root/Root "app")))
+(defn mount []
+  (reset! app (fc/mount @app root/Root "app")))
+
+(defn start []
+  (client/mount))
+
+(defn ^:export init []
+  (reset! app (fc/new-fulcro-client))
+  (start))
