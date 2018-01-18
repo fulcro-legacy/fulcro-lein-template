@@ -1,0 +1,43 @@
+{:lein {:profile "cljs"}
+
+ :builds
+       {:main     {:target     :browser
+                   :output-dir "resources/public/js/main"
+                   :asset-path "/js/main"
+
+                   :modules    {:app {:entries [starter.browser]}}
+
+                   :devtools   {:after-load starter.browser/start
+                                :preloads   [fulcro.inspect.preload]
+                                :http-root  "resources/public"
+                                :http-port  8020}}
+
+        :i18n     {:target           :browser
+                   :output-dir       "i18n"
+                   :asset-path       "/"
+                   :modules          {:app {:entries [starter.browser]}}
+                   :compiler-options {:optimization :whitespace}}
+
+        :test     {:target    :browser-test
+                   :test-dir  "resources/public/js/test"
+                   :ns-regexp "-spec$"
+                   :runner-ns {{name}}.client-test-main
+                              :devtools {:http-port          8021
+                                         :http-resource-root "public"
+                                         :http-root          "resources/public/js/test"}}
+
+        :ci-tests {:target     :karma
+                   :js-options {:js-provider :shadow}
+                   :output-to  "target/ci.js"
+                   :ns-regexp  "-spec$"}
+
+        :cards    {:target           :browser
+                   :output-dir       "resources/public/js/cards"
+                   :asset-path       "/js/cards"
+                   :compiler-options {:devcards true}
+                   :modules          {:main
+                                      {:entries [{{name}}.cards]}}
+                   :devtools         {:after-load {{name}}.cards/refresh
+                                      :preloads   [fulcro.inspect.preload]
+                                      :http-root  "resources/public"
+                                      :http-port  8022}}}}

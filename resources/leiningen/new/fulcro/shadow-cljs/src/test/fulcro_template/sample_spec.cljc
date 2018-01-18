@@ -1,0 +1,1 @@
+/Users/tonykay/fulcrologic/fulcro-lein-template/resources/leiningen/new/fulcro/2.x/src/test/fulcro_template/sample_spec.cljc

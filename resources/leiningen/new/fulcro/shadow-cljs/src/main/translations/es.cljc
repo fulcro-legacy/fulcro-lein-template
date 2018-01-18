@@ -1,0 +1,1 @@
+../../../../2.x/src/main/translations/es.cljc
