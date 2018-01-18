@@ -1,12 +1,1 @@
-(ns fulcro-template.api.mutations
-  (:require
-    [taoensso.timbre :as timbre]
-    [fulcro.server :refer [defmutation]]))
-
-;; Place your server mutations here
-
-(defmutation ping
-  "Server mutation for ping, which just prints incoming parameters to the server log."
-  [params]
-  (action [env]
-    (timbre/info "Deep Thought giggles at your simple parameters: " params)))
+/Users/tonykay/fulcrologic/fulcro-lein-template/resources/leiningen/new/fulcro/2.x/src/main/fulcro_template/api/mutations.clj

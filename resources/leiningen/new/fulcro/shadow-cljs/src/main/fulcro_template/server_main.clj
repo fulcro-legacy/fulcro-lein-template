@@ -1,16 +1,1 @@
-(ns fulcro-template.server-main
-  (:require
-    [com.stuartsierra.component :as component]
-    [fulcro.server :as c]
-    [taoensso.timbre :as timbre]
-    [fulcro-template.server :refer [build-server]])
-  (:gen-class))
-
-; It is recommended that your production config be on the server itself in a directory. We have placed a
-; sample on the classpath, which is also legal:
-(def config-path "config/prod.edn")
-
-;; This is a separate file for the uberjar only. We control the server in dev mode from src/dev/user.clj
-(defn -main [& args]
-  (let [system (build-server {:config config-path})]
-    (component/start system)))
+/Users/tonykay/fulcrologic/fulcro-lein-template/resources/leiningen/new/fulcro/2.x/src/main/fulcro_template/server_main.clj

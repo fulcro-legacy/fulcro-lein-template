@@ -1,7 +1,1 @@
-(ns fulcro-template.intro
-  (:require [devcards.core :as rc :refer-macros [defcard]]
-            [fulcro-template.ui.components :as comp]))
-
-(defcard SVGPlaceholder
-  "# SVG Placeholder"
-  (comp/ui-placeholder {:w 200 :h 200}))
+/Users/tonykay/fulcrologic/fulcro-lein-template/resources/leiningen/new/fulcro/2.x/src/cards/fulcro_template/intro.cljs
