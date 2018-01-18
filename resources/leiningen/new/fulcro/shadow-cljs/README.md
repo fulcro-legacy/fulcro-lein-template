@@ -33,12 +33,13 @@ The main project source is in `src/main`.
     │   │   └── prod.edn
     │   ├── {{sanitized}}
     │   │   ├── api
-    │   │   │   ├── mutations.clj    ; server-side implementation of mutations
-    │   │   │   ├── mutations.cljs   ; client-side implementation of mutations
-    │   │   │   └── read.clj         ; server-side reads
-    │   │   ├── client.cljs          ; file that creates the Fulcro client
-    │   │   ├── server.clj           ; file that creates the web server
-    │   │   ├── server_main.clj      ; production server entry point
+    │   │   │   ├── mutations.clj          ; server-side implementation of mutations
+    │   │   │   ├── mutations.cljs         ; client-side implementation of mutations
+    │   │   │   └── read.clj               ; server-side reads
+    │   │   ├── client.cljs                ; file that creates the Fulcro client
+    │   │   ├── development-preload.cljs   ; code to run in development mode before anything else
+    │   │   ├── server.clj                 ; file that creates the web server
+    │   │   ├── server_main.clj            ; production server entry point
     │   │   └── ui
     │   │       ├── components.cljc  ; Sample reusable component
     │   │       └── root.cljc        ; Main UI
@@ -101,11 +102,31 @@ You typically do not need the one for main because you'll be running your
 own server, but it is there in case you are only going to be writing
 a client-side app that has no server API.
 
-If you're using CIDER,
+The URLs for working with cards and tests are:
+
+- Cards: [http://localhost:8022/cards.html](http://localhost:8022/cards.html)
+- Tests: [http://localhost:8021/index.html](http://localhost:8021/index.html)
+- Main: [http://localhost:8020/index.html](http://localhost:8020/index.html) (NO API SERVER)
+
+See the server section below for working on the full-stack app itself.
+
+### Client REPL
+
+The shadow-cljs compiler starts an nREPL. It is configured to start on
+port 9000 (in `shadow-cljs.edn`).
+
+In IntelliJ, simply add a *remote* Clojure REPL configuration with
+host `localhost` and port `9000`.
+
+If you're using CIDER
 see [the Shadow-cljs User's Guide](https://shadow-cljs.github.io/docs/UsersGuide.html#_cider)
 for more information.
 
-Running the server:
+### The API Server
+
+The shadow-cljs compiler starts a server for serving development files,
+but you usually will not use it. Instead you'll start your own server
+that can also serve your application's API.
 
 Start a clj REPL in IntelliJ, or from the command line:
 
@@ -117,17 +138,25 @@ user=> (restart) ; stop, reload server code, and go again
 user=> (tools-ns/refresh) ; retry code reload if hot server reload fails
 ```
 
-The URLs are:
+The URL to work on your application is then
+[http://localhost:3000](http://localhost:3000).
 
-- Client (using server): [http://localhost:3000](http://localhost:3000)
-- Cards: [http://localhost:8022/cards.html](http://localhost:8022/cards.html)
-- Tests: [http://localhost:8021/index.html](http://localhost:8021/index.html)
+Hot code reload, preloads, and such are all coded into the javascript,
+so serving the files from the alternate server is fine.
 
-## Fulcro Inspect
+### Preloads
 
-The Fulcro inspect will preload on the main build. You can activate it
-by pressing CTRL-F while in the application (dev mode only). If you need
-a different keyboard shortcut (e.g. for Windows) see the docs on github.
+There is a preload file that is used on the development build of the
+application `{{name}}.development-preload`. You can add code here that
+you want to execute before the application initializes in development
+mode.
+
+### Fulcro Inspect
+
+The Fulcro inspect will preload on the development build of the main
+application and cards. You can activate it by pressing CTRL-F while in
+the application. If you need a different keyboard shortcut (e.g. for
+Windows) see the docs on github.
 
 ## Tests
 

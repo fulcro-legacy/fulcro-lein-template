@@ -71,11 +71,11 @@
    ["src/main/{{sanitized}}/api/mutations.cljs" (render "src/main/fulcro_template/api/mutations.cljs" data)]
    ["src/main/{{sanitized}}/api/read.clj" (render "src/main/fulcro_template/api/read.clj" data)]
    ["src/main/{{sanitized}}/client.cljs" (render "src/main/fulcro_template/client.cljs" data)]
+   ["src/main/{{sanitized}}/development_preload.cljs" (render "src/main/fulcro_template/development_preload.cljs" data)]
    ["src/main/{{sanitized}}/server.clj" (render "src/main/fulcro_template/server.clj" data)]
    ["src/main/{{sanitized}}/server_main.clj" (render "src/main/fulcro_template/server_main.clj" data)]
    ["src/main/{{sanitized}}/ui/components.cljc" (render "src/main/fulcro_template/ui/components.cljc" data)]
    ["src/main/{{sanitized}}/ui/root.cljc" (render "src/main/fulcro_template/ui/root.cljc" data)]
-   ["src/main/starter/browser.cljs" (render "src/main/starter/browser.cljs" data)]
    ["src/main/translations/es.cljc" (render "src/main/translations/es.cljc" data)]
    ["src/test/{{sanitized}}/client_test_main.cljs" (render "src/test/fulcro_template/client_test_main.cljs" data)]
    ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/fulcro_template/sample_spec.cljc" data)]])
