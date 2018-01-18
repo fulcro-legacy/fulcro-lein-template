@@ -24,15 +24,15 @@
                                            "compile" ["with-profile" "cljs" "run" "-m" "shadow.cljs.devtools.cli" "release" "main"]]}
              :production {}
              :cljs       {:source-paths ["src/main" "src/test" "src/cards"]
-                          :dependencies [[binaryage/devtools "0.9.7"]
-                                         [thheller/shadow-cljs "2.0.131"]
+                          :dependencies [[binaryage/devtools "0.9.8"]
+                                         [thheller/shadow-cljs "2.0.133"]
                                          [fulcrologic/fulcro-inspect "2.0.0-alpha4"]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]}
              :dev        {:source-paths ["src/dev" "src/main"]
                           :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-client" "-XX:+TieredCompilation" "-XX:TieredStopAtLevel=1"
                                          "-Xmx1g" "-XX:+UseConcMarkSweepGC" "-XX:+CMSClassUnloadingEnabled" "-Xverify:none"]
 
-                          :plugins      [[com.jakemccrary/lein-test-refresh "0.17.0"]]
+                          :plugins      [[com.jakemccrary/lein-test-refresh "0.21.1"]]
 
                           :dependencies [[org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
