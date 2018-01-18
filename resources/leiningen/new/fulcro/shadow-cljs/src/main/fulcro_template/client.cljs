@@ -8,7 +8,7 @@
   (reset! app (fc/mount @app root/Root "app")))
 
 (defn start []
-  (client/mount))
+  (mount))
 
 (defn ^:export init []
   (reset! app (fc/new-fulcro-client))

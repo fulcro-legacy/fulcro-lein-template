@@ -1,43 +1,42 @@
-{:lein {:profile "cljs"}
+{:lein   {:profile "cljs"}
+ :nrepl  {:port 9000}
+ :builds {:main     {:target     :browser
+                     :output-dir "resources/public/js/main"
+                     :asset-path "/js/main"
 
- :builds
- {:main {:target :browser
-         :output-dir "resources/public/js/main"
-         :asset-path "/js/main"
+                     :modules    {:app {:entries [{{name}}.client]}}
 
-         :modules {:app {:entries [{{name}}.client]}}
+                     :devtools   {:after-load {{name}}.client/start
+                                  :preloads [fulcro.inspect.preload {{name}}.development-preload]
+                                  :http-root "resources/public"
+                                  :http-port 8020}}
 
-         :devtools {:after-load {{name}}.client/start
-                    :preloads [fulcro.inspect.preload]
-                    :http-root "resources/public"
-                    :http-port 8020}}
+          :i18n     {:target           :browser
+                     :output-dir       "i18n"
+                     :asset-path       "/"
+                     :modules          {:app {:entries [{{name}}.client]}}
+                     :compiler-options {:optimization :whitespace}}
 
-  :i18n {:target :browser
-         :output-dir "i18n"
-         :asset-path "/"
-         :modules {:app {:entries [{{name}}.client]}}
-         :compiler-options {:optimization :whitespace}}
+          :test     {:target    :browser-test
+                     :test-dir  "resources/public/js/test"
+                     :ns-regexp "-spec$"
+                     :runner-ns {{name}}.client-test-main
+                     :devtools {:http-port          8021
+                                :http-resource-root "public"
+                                :http-root          "resources/public/js/test"}}
 
-  :test {:target :browser-test
-         :test-dir "resources/public/js/test"
-         :ns-regexp "-spec$"
-         :runner-ns {{name}}.client-test-main
-         :devtools {:http-port 8021
-                    :http-resource-root "public"
-                    :http-root "resources/public/js/test"}}
+          :ci-tests {:target     :karma
+                     :js-options {:js-provider :shadow}
+                     :output-to  "target/ci.js"
+                     :ns-regexp  "-spec$"}
 
-  :ci-tests {:target :karma
-             :js-options {:js-provider :shadow}
-             :output-to "target/ci.js"
-             :ns-regexp "-spec$"}
-
-  :cards {:target :browser
-          :output-dir "resources/public/js/cards"
-          :asset-path "/js/cards"
-          :compiler-options {:devcards true}
-          :modules {:main
-                    {:entries [{{name}}.cards]}}
-          :devtools {:after-load {{name}}.cards/refresh
-                     :preloads [fulcro.inspect.preload]
-                     :http-root "resources/public"
-                     :http-port 8022}}}}
+          :cards    {:target           :browser
+                     :output-dir       "resources/public/js/cards"
+                     :asset-path       "/js/cards"
+                     :compiler-options {:devcards true}
+                     :modules          {:main
+                                        {:entries [{{name}}.cards]}}
+                     :devtools         {:after-load {{name}}.cards/refresh
+                                        :preloads [fulcro.inspect.preload {{name}}.development-preload]
+                                        :http-root "resources/public"
+                                        :http-port 8022}}}}
