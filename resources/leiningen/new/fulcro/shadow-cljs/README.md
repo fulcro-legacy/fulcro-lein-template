@@ -3,52 +3,80 @@
 The main project source is in `src/main`.
 
 ```
-├── config                    server configuration files. See Fulcro docs.
-│   ├── defaults.edn
-│   ├── dev.edn
-│   └── prod.edn
-├── fulcro-template
-    ├── api
-    │   ├── mutations.clj      server-side version of mutations
-    │   ├── mutations.cljs     client-side version of mutations
-    │   └── read.clj           server implementation of reads
-    ├── client.cljs            client creation (shared among dev/prod)
-    ├── server.clj             server creation (shared among dev/prod)
-    ├── server_main.clj        production server main
-    └── ui
-        ├── components.cljc    a sample component
-        └── root.cljc          the root UI
+.
+├── Makefile           ; i18n extract/generate and CI test running
+├── i18n               ; directory for i18n build/extract/translate
+│   ├── es.po          ; spanish translations
+│   └── messages.pot   ; extracted strings (template)
+├── karma.conf.js      ; CI Runner config
+├── package.json       ; NPM modules
+├── project.clj        ; Leiningen project file
+├── resources
+│   └── public
+│       ├── cards.html    ; page for mounting dev cards
+│       ├── index.html    ; main app index page
+│       └── js
+│           └── test
+│               └── index.html ; custom test page for running tests in dev mode
+├── shadow-cljs.edn    ; Shadow-cljs configuration file. CLJS builds.
+└── src
+    ├── cards
+    │   └── {{sanitized}}
+    │       ├── cards.cljs   ; Main for devcards
+    │       └── intro.cljs   ; A sample devcards file
+    ├── dev
+    │   └── user.clj         ; Functions for running web server in development mode
+    ├── main
+    │   ├── config           ; configuration files for web server
+    │   │   ├── defaults.edn
+    │   │   ├── dev.edn
+    │   │   └── prod.edn
+    │   ├── {{sanitized}}
+    │   │   ├── api
+    │   │   │   ├── mutations.clj    ; server-side implementation of mutations
+    │   │   │   ├── mutations.cljs   ; client-side implementation of mutations
+    │   │   │   └── read.clj         ; server-side reads
+    │   │   ├── client.cljs          ; file that creates the Fulcro client
+    │   │   ├── server.clj           ; file that creates the web server
+    │   │   ├── server_main.clj      ; production server entry point
+    │   │   └── ui
+    │   │       ├── components.cljc  ; Sample reusable component
+    │   │       └── root.cljc        ; Main UI
+    │   ├── starter
+    │   │   └── browser.cljs         ; Shadow-cljs init/start/stop for hot code reload and production setup
+    │   └── translations
+    │       └── es.cljc              ; Generated cljs for es translations (see Makefile)
+    └── test
+        └── {{sanitized}}
+            ├── client_test_main.cljs  ; setup for dev mode tests
+            └── sample_spec.cljc       ; a sample spec in fulcro-spec
 ```
 
 ## Development Mode
 
-Shadow-cljs handles the client-side development build. There is a file
-in `src/dev/starter/browser.cljs`
-Special code for working in dev mode is in `src/dev`, which is not on
-the build for production builds.
+Shadow-cljs handles the client-side development build. The  file
+`src/main/starter/browser.cljs` contains the code to start and refresh
+the client for hot code reload.
 
-Running all client builds:
-
-```
-lein dev
-```
-
-Or use a plain REPL in IntelliJ with JVM options of `-Ddev -Dtest -Dcards` and parameters of
-`script/figwheel.clj`.
-
-For a faster hot code reload experience, run only the build that matters to you at the time,
-
-Running multiple builds in one figwheel can slow down hot code reload. You can also
-run multiple separate figwheel instances to leverage more of your CPU cores, and
-an additional system property can be used to allow this (by allocating different network ports
-to figwheel instances):
+Running all client development builds:
 
 ```
-# Assuming one per terminal window...each gets a REPL that expects STDIN/STDOUT.
-JVM_OPTS="-Ddev -Dfigwheel.port=8081" lein run -m clojure.main script/figwheel.clj
-JVM_OPTS="-Dtest -Dfigwheel.port=8082" lein run -m clojure.main script/figwheel.clj
-JVM_OPTS="-Dcards -Dfigwheel.port=8083" lein run -m clojure.main script/figwheel.clj
+$ shadow-cljs watch main cards test
+...
+shadow-cljs - HTTP server for ":main" available at http://localhost:8020
+shadow-cljs - HTTP server for ":test" available at http://localhost:8021
+shadow-cljs - HTTP server for ":cards" available at http://localhost:8022
+...
 ```
+
+This is the recommended approach on a multicore machine. The compiler
+will detect which builds are affected by a change and will minimize
+incremental build time.
+
+NOTE: The server wil start a web server for all three builds (on different ports).
+You typically do not need the one for main because you'll be running your
+own server, but it is there in case you are only going to be writing
+a client-side app that has no server API.
 
 Running the server:
 
@@ -65,13 +93,13 @@ user=> (tools-ns/refresh) ; retry code reload if hot server reload fails
 The URLs are:
 
 - Client (using server): [http://localhost:3000](http://localhost:3000)
-- Cards: [http://localhost:3449/cards.html](http://localhost:3449/cards.html)
-- Tests: See below.
+- Cards: [http://localhost:8022/cards.html](http://localhost:8022/cards.html)
+- Tests: [http://localhost:8021/index.html](http://localhost:8021/index.html)
 
 ## Fulcro Inspect
 
-The Fulcro inspect to will preload. You can activate it by pressing CTRL-F while
-in the application (dev mode only). If you need
+The Fulcro inspect will preload on the main build. You can activate it
+by pressing CTRL-F while in the application (dev mode only). If you need
 a different keyboard shortcut (e.g. for Windows) see the docs on github.
 
 ## Tests
@@ -81,10 +109,8 @@ Tests are in `src/test`
 ```
 src/test
 └── fulcro-template
-    ├── CI_runner.cljs            entry point for CI (doo) runner for client tests
     ├── client_test_main.cljs     entry point for dev-mode client tests
-    ├── sample_spec.cljc          spec runnable by client and server. No "main" needed for server (clj) tests
-    └── tests_to_run.cljs         shared requires of all specs (used by CI and dev mode)
+    └── sample_spec.cljs          spec runnable by client and server.
 ```
 
 ### Server tests:
@@ -105,12 +131,6 @@ If you'd instead like to see them pop up over and over again in a terminal:
 lein test-refresh
 ```
 
-### Client Tests
-
-Run the figwheel build and include the `-Dtest` JVM option. The URL to run/view the
-tests will be
-[http://localhost:3449/fulcro-spec-client-tests.html](http://localhost:3449/fulcro-spec-client-tests.html)
-
 ### CI Tests
 
 Use the Makefile target `tests`:
@@ -119,20 +139,12 @@ Use the Makefile target `tests`:
 make tests
 ```
 
-You must have `npm` and Chrome installed. See the documentation on `doo` for more information on
-using alternatives (phantom, firefox, etc).
+You must have `npm` and Chrome installed. The tests use the `npm`
+utility Karma for actually running the tests.
 
 ## Dev Cards
 
 The source is in `src/cards`.
-
-```
-JVM_OPTS="-Dcards" lein run -m clojure.main script/figwheel.clj
-```
-
-Or use a plain REPL in IntelliJ with JVM options of `-Dcards` and parameters of
-`script/figwheel.clj`.
-
 To add a new card namespace, remember to add a require for it to the `cards.cljs` file.
 
 ## I18N
@@ -158,5 +170,5 @@ make i18n-generate
 
 ```
 lein uberjar
-java -jar target/fulcro-template.jar
+java -jar target/{{sanitized}}.jar
 ```

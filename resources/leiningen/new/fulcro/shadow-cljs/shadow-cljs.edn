@@ -1,4 +1,4 @@
-{:lein true
+{:lein {:profile "cljs"}
 
  :builds
        {:main     {:target     :browser
