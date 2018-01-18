@@ -49,7 +49,7 @@
    ["src/test/{{sanitized}}/tests_to_run.cljs" (render "src/test/fulcro_template/tests_to_run.cljs" data)]])
 
 (defn shadowcljs-paths [render data]
-  [["gitignore" (render "gitignore" data)]
+  [[".gitignore" (render "gitignore" data)]
    ["i18n/es.po" (render "i18n/es.po" data)]
    ["i18n/messages.pot" (render "i18n/messages.pot" data)]
    ["karma.conf.js" (render "karma.conf.js" data)]
