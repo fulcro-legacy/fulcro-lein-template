@@ -108,7 +108,7 @@ Tests are in `src/test`
 
 ```
 src/test
-└── fulcro-template
+└── {{sanitized}}
     ├── client_test_main.cljs     entry point for dev-mode client tests
     └── sample_spec.cljs          spec runnable by client and server.
 ```

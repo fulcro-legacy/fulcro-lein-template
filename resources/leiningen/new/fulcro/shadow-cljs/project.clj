@@ -1,4 +1,4 @@
-(defproject fulcro-template "0.1.0-SNAPSHOT"
+(defproject {{name}} "0.1.0-SNAPSHOT"
   :description "My Cool Project"
   :license {:name "MIT" :url "https://opensource.org/licenses/MIT"}
   :min-lein-version "2.7.0"
@@ -8,7 +8,7 @@
                  [fulcrologic/fulcro "2.1.1"]
                  [fulcrologic/fulcro-spec "2.0.0-beta3" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
-  :uberjar-name "fulcro-template.jar"
+  :uberjar-name "{{sanitized}}.jar"
 
   :source-paths ["src/main"]
   :test-paths ["src/test"]
@@ -17,7 +17,7 @@
                  :with-repl    true
                  :changes-only true}
 
-  :profiles {:uberjar    {:main           fulcro-template.server-main
+  :profiles {:uberjar    {:main           {{name}}.server-main
                           :aot            :all
                           :jar-exclusions [#"public/js/test" #"public/js/cards" #"public/cards.html"]
                           :prep-tasks     ["clean" ["clean"]

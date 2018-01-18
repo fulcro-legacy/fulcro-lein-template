@@ -4,11 +4,11 @@
     [com.stuartsierra.component :as component]
     [fulcro-spec.suite :as suite]
     [fulcro-spec.selectors :as sel]
-    fulcro-template.server))
+    {{name}}.server))
 
 ;; ==================== SERVER ====================
 
-(set-refresh-dirs "src/cards" "src/dev" "src/main" "src/test")
+(set-refresh-dirs "src/dev" "src/main")
 
 (defn started? [sys]
   (-> sys :config :value))
@@ -21,7 +21,7 @@
 
 (defn- init []
   {:pre [(not (started? @system))]}
-  (when-let [new-system (fulcro-template.server/build-server {:config "config/dev.edn"})]
+  (when-let [new-system ({{name}}.server/build-server {:config "config/dev.edn"})]
     (reset! system new-system)))
 
 (defn- start []
@@ -52,7 +52,7 @@
 (suite/def-test-suite start-server-tests
   {:config       {:port 8888}
    :test-paths   ["src/test"]
-   :source-paths ["dev/server" "src/main"]}
+   :source-paths ["src/main"]}
   {:available #{:focused :unit :integration}
    :default   #{::sel/none :focused :unit}})
 

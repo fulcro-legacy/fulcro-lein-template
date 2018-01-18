@@ -1,5 +1,5 @@
-(ns fulcro-template.cards
-  (:require [fulcro-template.intro]
+(ns {{name}}.cards
+  (:require [{{name}}.intro]
             devcards.core))
 
 (devcards.core/start-devcard-ui!)

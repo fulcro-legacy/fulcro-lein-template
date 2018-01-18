@@ -1,8 +1,8 @@
 {
-  "name": "CITests",
+  "name": "{{name}}",
   "version": "1.0.0",
-  "description": "Testing",
-  "main": "index.js",
+  "description": "",
+  "main": "",
   "repository": "",
   "directories": {},
   "dependencies": {},

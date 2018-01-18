@@ -1,5 +1,5 @@
 (ns starter.browser
-  (:require [fulcro-template.client :as client]
+  (:require [{{name}}.client :as client]
             [fulcro.client.logging :as log]))
 
 
