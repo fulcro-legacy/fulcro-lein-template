@@ -69,8 +69,7 @@ shadow-cljs - HTTP server for ":cards" available at http://localhost:8022
 ...
 ```
 
-This is the recommended approach on a multicore machine. The compiler
-will detect which builds are affected by a change and will minimize
+The compiler will detect which builds are affected by a change and will minimize
 incremental build time.
 
 NOTE: The server wil start a web server for all three builds (on different ports).
@@ -78,12 +77,16 @@ You typically do not need the one for main because you'll be running your
 own server, but it is there in case you are only going to be writing
 a client-side app that has no server API.
 
+If you're using CIDER,
+see [the Shadow-cljs User's Guide](https://shadow-cljs.github.io/docs/UsersGuide.html#_cider)
+for more information.
+
 Running the server:
 
 Start a clj REPL in IntelliJ, or from the command line:
 
-```
-lein run -m clojure.main
+```bash
+$ lein repl
 user=> (go)
 ...
 user=> (restart) ; stop, reload server code, and go again

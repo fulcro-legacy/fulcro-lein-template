@@ -21,10 +21,10 @@
         :test     {:target    :browser-test
                    :test-dir  "resources/public/js/test"
                    :ns-regexp "-spec$"
-                   :runner-ns {{name}}.client-test-main
-                   :devtools  {:http-port          8021
-                               :http-resource-root "public"
-                               :http-root          "resources/public/js/test"}}
+                   :runner-ns {{name}} .client-test-main
+                              :devtools {:http-port          8021
+                                         :http-resource-root "public"
+                                         :http-root          "resources/public/js/test"}}
 
         :ci-tests {:target     :karma
                    :js-options {:js-provider :shadow}
@@ -36,8 +36,8 @@
                    :asset-path       "/js/cards"
                    :compiler-options {:devcards true}
                    :modules          {:main
-                                      {:entries [{{name}}.cards]}}
-                   :devtools         {:after-load starter.browser/start
+                                      {:entries [{{name}} .cards]}}
+                   :devtools         {:after-load {{name}}.cards/refresh
                                       :preloads   [fulcro.inspect.preload]
                                       :http-root  "resources/public"
                                       :http-port  8022}}}}
