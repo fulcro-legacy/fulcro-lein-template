@@ -1,4 +1,7 @@
-# Change Log
+2.0.8
+-----
+- Fixed typo
+
 2.0.7
 -----
 - Improved shadow-cljs support
