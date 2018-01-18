@@ -1,0 +1,43 @@
+{:lein true
+
+ :builds
+       {:main     {:target     :browser
+                   :output-dir "resources/public/js/main"
+                   :asset-path "/js/main"
+
+                   :modules    {:app {:entries [starter.browser]}}
+
+                   :devtools   {:after-load starter.browser/start
+                                :preloads   [fulcro.inspect.preload]
+                                :http-root  "resources/public"
+                                :http-port  8020}}
+
+        :test     {:target    :browser-test
+                   :test-dir  "resources/public/js/test"
+                   :ns-regexp "-spec$"
+                   :runner-ns boo.client-test-main
+                   :devtools  {:http-port          8021
+                               :http-resource-root "public"
+                               :http-root          "resources/public/js/test"}}
+
+        :ci-tests {:target     :karma
+                   :js-options {:js-provider :shadow}
+                   :output-to  "target/ci.js"
+                   :ns-regexp  "-spec$"}
+
+        :i18n     {:target           :browser
+                   :output-dir       "i18n"
+                   :compiler-options {:optimizations :whitespace}
+                   :devtools         {:enabled false}
+                   :modules          {:main {:entries [boo.client]}}}
+
+        :cards    {:target           :browser
+                   :output-dir       "resources/public/js/cards"
+                   :asset-path       "/js/cards"
+                   :compiler-options {:devcards true}
+                   :modules          {:main
+                                      {:entries [boo.cards]}}
+                   :devtools         {:after-load starter.browser/start
+                                      :preloads   [fulcro.inspect.preload]
+                                      :http-root  "resources/public"
+                                      :http-port  8022}}}}
