@@ -26,6 +26,7 @@
              :cljs       {:source-paths ["src/main" "src/test" "src/cards"]
                           :dependencies [[binaryage/devtools "0.9.8"]
                                          [thheller/shadow-cljs "2.0.133"]
+                                         [org.clojure/core.async "0.3.465"]
                                          [fulcrologic/fulcro-inspect "2.0.0-alpha4"]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]}
              :dev        {:source-paths ["src/dev" "src/main"]
