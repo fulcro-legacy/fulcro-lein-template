@@ -1,3 +1,7 @@
+2.0.9
+-----
+- Made shadow-cljs HUD on by default
+
 2.0.8
 -----
 - Fixed typo
