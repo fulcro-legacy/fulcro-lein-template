@@ -97,7 +97,7 @@
                                          [com.jakemccrary/lein-test-refresh "0.21.1"]]
 
                           :dependencies [[binaryage/devtools "0.9.8"]
-                                         [fulcrologic/fulcro-inspect "2.0.0-alpha4"]
+                                         [fulcrologic/fulcro-inspect "2.0.0-alpha5"]
                                          [org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
                                          [com.cemerick/piggieback "0.2.2"]

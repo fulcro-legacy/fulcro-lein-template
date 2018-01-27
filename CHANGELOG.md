@@ -1,3 +1,7 @@
+2.0.10
+------
+- Version upgrades (inspect and shadow-cljs)
+
 2.0.9
 -----
 - Made shadow-cljs HUD on by default

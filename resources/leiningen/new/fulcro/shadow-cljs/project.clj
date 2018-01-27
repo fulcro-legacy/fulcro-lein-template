@@ -25,9 +25,9 @@
              :production {}
              :cljs       {:source-paths ["src/main" "src/test" "src/cards"]
                           :dependencies [[binaryage/devtools "0.9.8"]
-                                         [thheller/shadow-cljs "2.0.133"]
+                                         [thheller/shadow-cljs "2.0.144"]
                                          [org.clojure/core.async "0.3.465"]
-                                         [fulcrologic/fulcro-inspect "2.0.0-alpha4"]
+                                         [fulcrologic/fulcro-inspect "2.0.0-alpha5"]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]}
              :dev        {:source-paths ["src/dev" "src/main"]
                           :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-client" "-XX:+TieredCompilation" "-XX:TieredStopAtLevel=1"
