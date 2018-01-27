@@ -1,3 +1,7 @@
+2.0.11
+------
+- Missing source dir for shadow-cljs
+
 2.0.10
 ------
 - Version upgrades (inspect and shadow-cljs)
