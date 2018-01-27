@@ -29,7 +29,7 @@
                                          [org.clojure/core.async "0.3.465"]
                                          [fulcrologic/fulcro-inspect "2.0.0-alpha5"]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]}
-             :dev        {:source-paths ["src/dev" "src/main"]
+             :dev        {:source-paths ["src/dev" "src/main" "src/cards"]
                           :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-client" "-XX:+TieredCompilation" "-XX:TieredStopAtLevel=1"
                                          "-Xmx1g" "-XX:+UseConcMarkSweepGC" "-XX:+CMSClassUnloadingEnabled" "-Xverify:none"]
 
