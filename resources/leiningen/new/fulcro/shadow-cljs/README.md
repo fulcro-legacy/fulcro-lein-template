@@ -43,8 +43,6 @@ The main project source is in `src/main`.
     │   │   └── ui
     │   │       ├── components.cljc  ; Sample reusable component
     │   │       └── root.cljc        ; Main UI
-    │   ├── starter
-    │   │   └── browser.cljs         ; Shadow-cljs init/start/stop for hot code reload and production setup
     │   └── translations
     │       └── es.cljc              ; Generated cljs for es translations (see Makefile)
     └── test
@@ -79,8 +77,8 @@ for more information.
 
 ## Development Mode
 
-Shadow-cljs handles the client-side development build. The  file
-`src/main/starter/browser.cljs` contains the code to start and refresh
+Shadow-cljs handles the client-side development build. The file
+`src/main/{{sanitized}}/client.cljs` contains the code to start and refresh
 the client for hot code reload.
 
 Running all client development builds:
