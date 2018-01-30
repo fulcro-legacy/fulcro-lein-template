@@ -21,7 +21,7 @@
                      :test-dir  "resources/public/js/test"
                      :ns-regexp "-spec$"
                      :runner-ns {{name}}.client-test-main
-                     :devtools {:http-port          8021
+                     :devtools {:http-port          8022
                                 :http-resource-root "public"
                                 :http-root          "resources/public/js/test"}}
 
@@ -39,4 +39,4 @@
                      :devtools         {:after-load {{name}}.cards/refresh
                                         :preloads [fulcro.inspect.preload {{name}}.development-preload shadow.cljs.devtools.client.hud]
                                         :http-root "resources/public"
-                                        :http-port 8022}}}}
+                                        :http-port 8023}}}}
