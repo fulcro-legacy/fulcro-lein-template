@@ -87,8 +87,8 @@ Running all client development builds:
 $ shadow-cljs watch main cards test
 ...
 shadow-cljs - HTTP server for ":main" available at http://localhost:8020
-shadow-cljs - HTTP server for ":test" available at http://localhost:8021
-shadow-cljs - HTTP server for ":cards" available at http://localhost:8022
+shadow-cljs - HTTP server for ":test" available at http://localhost:8022
+shadow-cljs - HTTP server for ":cards" available at http://localhost:8023
 ...
 ```
 
@@ -102,8 +102,8 @@ a client-side app that has no server API.
 
 The URLs for working with cards and tests are:
 
-- Cards: [http://localhost:8022/cards.html](http://localhost:8022/cards.html)
-- Tests: [http://localhost:8021/index.html](http://localhost:8021/index.html)
+- Cards: [http://localhost:8023/cards.html](http://localhost:8023/cards.html)
+- Tests: [http://localhost:8022/index.html](http://localhost:8022/index.html)
 - Main: [http://localhost:8020/index.html](http://localhost:8020/index.html) (NO API SERVER)
 
 See the server section below for working on the full-stack app itself.
