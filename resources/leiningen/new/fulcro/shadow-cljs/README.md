@@ -84,7 +84,7 @@ the client for hot code reload.
 Running all client development builds:
 
 ```
-$ shadow-cljs watch main cards test
+$ npx shadow-cljs watch main cards test
 ...
 shadow-cljs - HTTP server for ":main" available at http://localhost:8020
 shadow-cljs - HTTP server for ":test" available at http://localhost:8022
@@ -190,7 +190,7 @@ lein test-refresh
 Use the Makefile target `tests`:
 
 ```
-make tests
+make test
 ```
 
 You must have `npm` and Chrome installed. The tests use the `npm`
