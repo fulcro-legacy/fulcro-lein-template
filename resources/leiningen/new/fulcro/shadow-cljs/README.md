@@ -43,8 +43,6 @@ The main project source is in `src/main`.
     │   │   └── ui
     │   │       ├── components.cljc  ; Sample reusable component
     │   │       └── root.cljc        ; Main UI
-    │   ├── starter
-    │   │   └── browser.cljs         ; Shadow-cljs init/start/stop for hot code reload and production setup
     │   └── translations
     │       └── es.cljc              ; Generated cljs for es translations (see Makefile)
     └── test
@@ -79,18 +77,18 @@ for more information.
 
 ## Development Mode
 
-Shadow-cljs handles the client-side development build. The  file
-`src/main/starter/browser.cljs` contains the code to start and refresh
+Shadow-cljs handles the client-side development build. The file
+`src/main/{{sanitized}}/client.cljs` contains the code to start and refresh
 the client for hot code reload.
 
 Running all client development builds:
 
 ```
-$ shadow-cljs watch main cards test
+$ npx shadow-cljs watch main cards test
 ...
 shadow-cljs - HTTP server for ":main" available at http://localhost:8020
-shadow-cljs - HTTP server for ":test" available at http://localhost:8021
-shadow-cljs - HTTP server for ":cards" available at http://localhost:8022
+shadow-cljs - HTTP server for ":test" available at http://localhost:8022
+shadow-cljs - HTTP server for ":cards" available at http://localhost:8023
 ...
 ```
 
@@ -104,8 +102,8 @@ a client-side app that has no server API.
 
 The URLs for working with cards and tests are:
 
-- Cards: [http://localhost:8022/cards.html](http://localhost:8022/cards.html)
-- Tests: [http://localhost:8021/index.html](http://localhost:8021/index.html)
+- Cards: [http://localhost:8023/cards.html](http://localhost:8023/cards.html)
+- Tests: [http://localhost:8022/index.html](http://localhost:8022/index.html)
 - Main: [http://localhost:8020/index.html](http://localhost:8020/index.html) (NO API SERVER)
 
 See the server section below for working on the full-stack app itself.
@@ -192,7 +190,7 @@ lein test-refresh
 Use the Makefile target `tests`:
 
 ```
-make tests
+make test
 ```
 
 You must have `npm` and Chrome installed. The tests use the `npm`

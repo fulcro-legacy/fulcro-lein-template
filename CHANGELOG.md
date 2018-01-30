@@ -1,3 +1,7 @@
+2.0.12
+------
+- Minor tweaks to shadow-cljs
+
 2.0.11
 ------
 - Missing source dir for shadow-cljs
