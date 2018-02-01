@@ -7,7 +7,7 @@
                      :modules    {:app {:entries [{{name}}.client]}}
 
                      :devtools   {:after-load {{name}}.client/start
-                                  :preloads [fulcro.inspect.preload {{name}}.development-preload shadow.cljs.devtools.client.hud]
+                                  :preloads [fulcro.inspect.preload {{name}}.development-preload]
                                   :http-root "resources/public"
                                   :http-port 8020}}
 
@@ -37,6 +37,6 @@
                      :modules          {:main
                                         {:entries [{{name}}.cards]}}
                      :devtools         {:after-load {{name}}.cards/refresh
-                                        :preloads [fulcro.inspect.preload {{name}}.development-preload shadow.cljs.devtools.client.hud]
+                                        :preloads [fulcro.inspect.preload {{name}}.development-preload]
                                         :http-root "resources/public"
                                         :http-port 8023}}}}
