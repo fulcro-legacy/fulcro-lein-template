@@ -1,3 +1,7 @@
+2.0.15
+------
+- Version upgrades and better REPL with shadow-cljs
+
 2.0.12
 ------
 - Minor tweaks to shadow-cljs
