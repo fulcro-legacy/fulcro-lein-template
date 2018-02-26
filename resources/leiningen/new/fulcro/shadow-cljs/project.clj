@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.9.946"]
                  [fulcrologic/fulcro "2.2.1"]
-                 [fulcrologic/fulcro-spec "2.0.2" :scope "test" :exclusions [fulcrologic/fulcro]]]
+                 [fulcrologic/fulcro-spec "2.0.2-1" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
 
