@@ -8,7 +8,7 @@ i18n-extract:
 	@echo "Building Clojurescript"
 	@shadow-cljs release i18n
 	@echo "Running extraction"
-	@lein run -m clojure.main -e "(require 'fulcro.gettext) (fulcro.gettext/extract-strings {:js-path \"i18n/app.js\" :po \"i18n\"})"
+	@xgettext --from-code=UTF-8 --debug -k -ktr_alpha:1 -ktrc_alpha:1c,2 -ktrf_alpha:1 -o resources/i18n/messages.pot target/i18n.js
 	@echo "Done."
 	@echo "Prior translations were merged in all of your exising locales (unless you saw errors)."
 	@echo 
@@ -21,9 +21,4 @@ i18n-extract:
 	@echo 
 	@echo "See the GNU Gettext manual for more instructions on working with POT and PO files."
 
-i18n-generate:
-	@echo "Analyzing PO files and generating CLJC..."
-	@lein run -m clojure.main -e "(require 'fulcro.gettext) (fulcro.gettext/deploy-translations {:ns \"fulcro-template.locales\" :src \"src/main\" :po \"i18n\"})"
-	@echo "Done."
-
-.PHONY: i18n-extract i18n-generate test
+.PHONY: i18n-extract test

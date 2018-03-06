@@ -42,7 +42,7 @@
 (defsc Root [this {:keys [root/meaning ui/locale-selector]}]
   {:initial-state {:root/meaning         {}
                    ::i18n/current-locale {:locale :en :name "English"}
-                   :ui/locale-selector   {:locales [{:locale :en :name "English"} {:locale :es :name "Espanol"}]}}
+                   :ui/locale-selector   {:locales [{:locale :en :name "English" :translations {}} {:locale :es :name "Espanol"}]}}
    :query         [{::i18n/current-locale (prim/get-query i18n/Locale)}
                    {:ui/locale-selector (prim/get-query i18n/LocaleSelector)}
                    {:root/meaning (prim/get-query Meaning)}]}

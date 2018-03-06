@@ -49,13 +49,13 @@
 
 (defn shadowcljs-paths [render data]
   [[".gitignore" (render "gitignore" data)]
-   ["i18n/es.po" (render "i18n/es.po" data)]
-   ["i18n/messages.pot" (render "i18n/messages.pot" data)]
    ["karma.conf.js" (render "karma.conf.js" data)]
    ["Makefile" (render "Makefile" data)]
    ["package.json" (render "package.json" data)]
    ["project.clj" (render "project.clj" data)]
    ["README.md" (render "README.md" data)]
+   ["resources/i18n/es.po" (render "resources/i18n/es.po" data)]
+   ["resources/i18n/messages.pot" (render "resources/i18n/messages.pot" data)]
    ["resources/public/cards.html" (render "resources/public/cards.html" data)]
    ["resources/public/index.html" (render "resources/public/index.html" data)]
    ["resources/public/js/test/index.html" (render "resources/public/js/test/index.html" data)]
@@ -75,7 +75,6 @@
    ["src/main/{{sanitized}}/server_main.clj" (render "src/main/fulcro_template/server_main.clj" data)]
    ["src/main/{{sanitized}}/ui/components.cljc" (render "src/main/fulcro_template/ui/components.cljc" data)]
    ["src/main/{{sanitized}}/ui/root.cljc" (render "src/main/fulcro_template/ui/root.cljc" data)]
-   ["src/main/translations/es.cljc" (render "src/main/translations/es.cljc" data)]
    ["src/test/{{sanitized}}/client_test_main.cljs" (render "src/test/fulcro_template/client_test_main.cljs" data)]
    ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/fulcro_template/sample_spec.cljc" data)]])
 
