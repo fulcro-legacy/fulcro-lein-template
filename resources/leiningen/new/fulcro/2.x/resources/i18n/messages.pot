@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-11 23:11-0700\n"
+"POT-Creation-Date: 2018-03-05 18:16-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: i18n/i18n.js:35290
-msgid "(Deep Thought Hums)"
+#: resources/i18n/i18n.js:34277
+msgid "(Deep Thought Hums...)"
 msgstr ""
 
-#: i18n/i18n.js:35294
+#: resources/i18n/i18n.js:34277
+msgid "The meaning of {what} is {meaning}."
+msgstr ""
+
+#: resources/i18n/i18n.js:34278
+msgid "Ask Deep Thought."
+msgstr ""
+
+#: resources/i18n/i18n.js:34303
 msgid "Ping the server!"
-msgstr ""
-
-#: i18n/i18n.js:35294
-msgid "The meaning of life is {meaning}."
-msgstr ""
-
-#: i18n/i18n.js:35296
-msgid "Ask Deep Thought server about the meaning of life."
 msgstr ""

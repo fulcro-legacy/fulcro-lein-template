@@ -1,3 +1,8 @@
+2.0.19
+------
+- Version updates
+- Ported i18n to new alpha version
+
 2.0.17
 ------
 - Version updates

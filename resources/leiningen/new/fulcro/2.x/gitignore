@@ -15,7 +15,4 @@ out
 package-lock.json
 resources/private
 .lein-repl-history
-i18n/i18n.js
-i18n/tmp
-i18n/*.mo
-i18n/*~
+resources/i18n/i18n.js

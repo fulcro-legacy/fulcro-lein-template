@@ -5,14 +5,14 @@ The main project source is in `src/main`.
 ```
 .
 ├── Makefile           ; i18n extract/generate and CI test running
-├── i18n               ; directory for i18n build/extract/translate
-│   ├── es.po          ; spanish translations
-│   └── messages.pot   ; extracted strings (template)
 ├── karma.conf.js      ; CI Runner config
 ├── package.json       ; NPM modules
 ├── project.clj        ; Leiningen project file
 ├── resources
-│   └── public
+|   ├── i18n               ; directory for i18n extract/translate/serve
+|   │   ├── es.po          ; spanish translations
+|   │   └── messages.pot   ; extracted strings (template)
+|   └── public
 │       ├── cards.html    ; page for mounting dev cards
 │       ├── index.html    ; main app index page
 │       └── js
@@ -31,20 +31,18 @@ The main project source is in `src/main`.
     │   │   ├── defaults.edn
     │   │   ├── dev.edn
     │   │   └── prod.edn
-    │   ├── {{sanitized}}
-    │   │   ├── api
-    │   │   │   ├── mutations.clj          ; server-side implementation of mutations
-    │   │   │   ├── mutations.cljs         ; client-side implementation of mutations
-    │   │   │   └── read.clj               ; server-side reads
-    │   │   ├── client.cljs                ; file that creates the Fulcro client
-    │   │   ├── development-preload.cljs   ; code to run in development mode before anything else
-    │   │   ├── server.clj                 ; file that creates the web server
-    │   │   ├── server_main.clj            ; production server entry point
-    │   │   └── ui
-    │   │       ├── components.cljc  ; Sample reusable component
-    │   │       └── root.cljc        ; Main UI
-    │   └── translations
-    │       └── es.cljc              ; Generated cljs for es translations (see Makefile)
+    │   └── {{sanitized}}
+    │       ├── api
+    │       │   ├── mutations.clj          ; server-side implementation of mutations
+    │       │   ├── mutations.cljs         ; client-side implementation of mutations
+    │       │   └── read.clj               ; server-side reads
+    │       ├── client.cljs                ; file that creates the Fulcro client
+    │       ├── development-preload.cljs   ; code to run in development mode before anything else
+    │       ├── server.clj                 ; file that creates the web server
+    │       ├── server_main.clj            ; production server entry point
+    │       └── ui
+    │           ├── components.cljc  ; Sample reusable component
+    │           └── root.cljc        ; Main UI
     └── test
         └── {{sanitized}}
             ├── client_test_main.cljs  ; setup for dev mode tests
@@ -204,7 +202,7 @@ a require the for new card namespace to the `cards.cljs` file.
 
 ## I18N
 
-The i18n process is codified into the Makefile as two targets. The first extracts strings from
+The i18n process is codified into a Makefile. The target extracts strings from
 the source (which must build the js, and run xgettext on it, which you must
 have installed, perhaps from brew):
 
@@ -214,12 +212,10 @@ make i18n-extract
 
 and gives you instructions on generating translations.
 
-The second takes the translations and generates a cljs namespace for
-them:
+The translations (po files) are then places into `resources/i18n` and will
+be automatically served to the client when the client changes to that locale.
 
-```
-make i18n-generate
-```
+See the Developer's Guide for more details.
 
 ## Standalone Runnable Jar (Production, with advanced optimized client js)
 

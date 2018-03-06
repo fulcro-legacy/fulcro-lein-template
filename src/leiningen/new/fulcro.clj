@@ -17,12 +17,12 @@
 
 (defn cljsbuild-paths [render data]
   [[".gitignore" (render "gitignore" data)]
-   ["i18n/es.po" (render "i18n/es.po" data)]
-   ["i18n/messages.pot" (render "i18n/messages.pot" data)]
    ["Makefile" (render "Makefile" data)]
    ["package.json" (render "package.json" data)]
    ["project.clj" (render "project.clj" data)]
    ["README.md" (render "README.md" data)]
+   ["resources/i18n/es.po" (render "resources/i18n/es.po" data)]
+   ["resources/i18n/messages.pot" (render "resources/i18n/messages.pot" data)]
    ["resources/public/cards.html" (render "resources/public/cards.html" data)]
    ["resources/public/index.html" (render "resources/public/index.html" data)]
    ["script/figwheel.clj" (render "script/figwheel.clj" data)]
@@ -42,7 +42,6 @@
    ["src/main/{{sanitized}}/server_main.clj" (render "src/main/fulcro_template/server_main.clj" data)]
    ["src/main/{{sanitized}}/ui/components.cljc" (render "src/main/fulcro_template/ui/components.cljc" data)]
    ["src/main/{{sanitized}}/ui/root.cljc" (render "src/main/fulcro_template/ui/root.cljc" data)]
-   ["src/main/translations/es.cljc" (render "src/main/translations/es.cljc" data)]
    ["src/test/{{sanitized}}/CI_runner.cljs" (render "src/test/fulcro_template/CI_runner.cljs" data)]
    ["src/test/{{sanitized}}/client_test_main.cljs" (render "src/test/fulcro_template/client_test_main.cljs" data)]
    ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/fulcro_template/sample_spec.cljc" data)]
@@ -50,13 +49,13 @@
 
 (defn shadowcljs-paths [render data]
   [[".gitignore" (render "gitignore" data)]
-   ["i18n/es.po" (render "i18n/es.po" data)]
-   ["i18n/messages.pot" (render "i18n/messages.pot" data)]
    ["karma.conf.js" (render "karma.conf.js" data)]
    ["Makefile" (render "Makefile" data)]
    ["package.json" (render "package.json" data)]
    ["project.clj" (render "project.clj" data)]
    ["README.md" (render "README.md" data)]
+   ["resources/i18n/es.po" (render "resources/i18n/es.po" data)]
+   ["resources/i18n/messages.pot" (render "resources/i18n/messages.pot" data)]
    ["resources/public/cards.html" (render "resources/public/cards.html" data)]
    ["resources/public/index.html" (render "resources/public/index.html" data)]
    ["resources/public/js/test/index.html" (render "resources/public/js/test/index.html" data)]
@@ -76,7 +75,6 @@
    ["src/main/{{sanitized}}/server_main.clj" (render "src/main/fulcro_template/server_main.clj" data)]
    ["src/main/{{sanitized}}/ui/components.cljc" (render "src/main/fulcro_template/ui/components.cljc" data)]
    ["src/main/{{sanitized}}/ui/root.cljc" (render "src/main/fulcro_template/ui/root.cljc" data)]
-   ["src/main/translations/es.cljc" (render "src/main/translations/es.cljc" data)]
    ["src/test/{{sanitized}}/client_test_main.cljs" (render "src/test/fulcro_template/client_test_main.cljs" data)]
    ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/fulcro_template/sample_spec.cljc" data)]])
 
@@ -86,9 +84,7 @@
   (main/info " -h          : This help")
   (main/info " demo        : Include demo code")
   (main/info " nodemo      : No demo code (it will ask if you don't specify this)")
-  (main/info " v1          : Generate a Fulcro v1.x app instead of a more recent release")
-  (main/info " shadow-cljs : Generate a Fulcro 2.x app that uses shadow-cljs instead of figwheel/cljsbuild. Better for using npm native js libraries.")
-  (main/info "The demo/nodemo option can be combined with version, but v1 and shadow-cljs are mutually exclusive."))
+  (main/info " shadow-cljs : Generate a Fulcro 2.x app that uses shadow-cljs instead of figwheel/cljsbuild. Better for using npm native js libraries."))
 
 (defn fulcro
   "Generates a simple Fulcro template project"
@@ -112,16 +108,13 @@
         demo-prompt-yes? (when-not demo-specified? (= "y" (prompt "Do you want demo content? [y/n] " #{"y" "n"})))
         shadowcljs?      (contains? add-ons "shadow-cljs")
         demo?            (or demo-prompt-yes? (contains? add-ons "demo"))]
-    (let [v1?      (contains? add-ons "v1")
-          data     {:name      name
-                    :v1?       v1?
+    (let [data     {:name      name
                     :demo?     demo?
                     :nodemo?   (not demo?)
                     :sanitized (name-to-path name)}
-          base-dir (cond
-                     v1? "1.x/"
-                     shadowcljs? "shadow-cljs/"
-                     :else "2.x/")
+          base-dir (if shadowcljs?
+                     "shadow-cljs/"
+                     "2.x/")
           render   (fn [filename data] (render (str base-dir filename) data))
           files    (if shadowcljs?
                      (shadowcljs-paths render data)

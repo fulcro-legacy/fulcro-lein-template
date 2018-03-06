@@ -8,19 +8,17 @@ The main project source is in `src/main`.
 │   ├── dev.edn
 │   └── prod.edn
 ├── {{sanitized}}
-│   ├── api
-│   │   ├── mutations.clj      server-side version of mutations
-│   │   ├── mutations.cljs     client-side version of mutations
-│   │   └── read.clj           server implementation of reads
-│   ├── client.cljs            client creation (shared among dev/prod)
-│   ├── client_main.cljs       production client main
-│   ├── server.clj             server creation (shared among dev/prod)
-│   ├── server_main.clj        production server main
-│   └── ui
-│       ├── components.cljc    a sample component
-│       └── root.cljc          the root UI
-└── translations
-    └── es.cljc                Spanish translations of strings on client UI
+    ├── api
+    │   ├── mutations.clj      server-side version of mutations
+    │   ├── mutations.cljs     client-side version of mutations
+    │   └── read.clj           server implementation of reads
+    ├── client.cljs            client creation (shared among dev/prod)
+    ├── client_main.cljs       production client main
+    ├── server.clj             server creation (shared among dev/prod)
+    ├── server_main.clj        production server main
+    └── ui
+        ├── components.cljc    a sample component
+        └── root.cljc          the root UI
 ```
 
 ## Development Mode
@@ -140,7 +138,7 @@ To add a new card namespace, remember to add a require for it to the `cards.cljs
 
 ## I18N
 
-The i18n process is codified into the Makefile as two targets. The first extracts strings from
+The i18n process is codified into a Makefile. The target extracts strings from
 the source (which must build the js, and run xgettext on it, which you must
 have installed, perhaps from brew):
 
@@ -150,12 +148,10 @@ make i18n-extract
 
 and gives you instructions on generating translations.
 
-The second takes the translations and generates a cljs namespace for
-them:
+The translations (po files) are then places into `resources/i18n` and will
+be automatically served to the client when the client changes to that locale.
 
-```
-make i18n-generate
-```
+See the Developer's Guide for more details.
 
 ## Standalone Runnable Jar (Production, with advanced optimized client js)
 

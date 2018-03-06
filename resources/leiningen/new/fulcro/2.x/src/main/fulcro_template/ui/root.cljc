@@ -2,11 +2,10 @@
   (:require
     [fulcro.client.mutations :as m]
     [fulcro.client.data-fetch :as df]
-    translations.es                                         ; preload translations by requiring their namespace. See Makefile for extraction/generation
     [fulcro.client.dom :as dom]
     [{{name}}.api.mutations :as api]
     [fulcro.client.primitives :as prim :refer [defsc]]
-    [fulcro.i18n :refer [tr trf]]))
+    [fulcro.alpha.i18n :as i18n :refer [tr trf]]))
 
 ;; The main UI of your application
 
@@ -40,27 +39,15 @@
 
 (def ui-meaning (prim/factory Meaning))
 
-(defsc LocaleSelector [this {:keys [ui/locale available-locales]}]
-  {:initial-state (fn [p] {:available-locales {"en" "English" "es" "Spanish"}})
-   :ident         (fn [] [:ui-components/by-id :locale-selector])
-   ; the weird-looking query here pulls data from the root node (where the current locale is stored) with a "link" query
-   :query         [[:ui/locale '_] :available-locales]}
-  (dom/div nil "Locale:" (map-indexed (fn [index [k v]]
-                                        (dom/a #js {:href    "#"
-                                                    :key     index
-                                                    :style   #js {:paddingRight "5px"}
-                                                    :onClick #(prim/transact! this `[(m/change-locale {:lang ~k})])} v)) available-locales)))
-
-(def ui-locale (prim/factory LocaleSelector))
-
-(defsc Root [this {:keys [root/meaning ui/locale-selector] :or {react-key "ROOT"}}]
-  {:initial-state (fn [p] {:root/meaning       (prim/get-initial-state Meaning nil)
-                           :ui/locale-selector (prim/get-initial-state LocaleSelector {})})
-   :query         [:ui/locale
-                   {:root/meaning (prim/get-query Meaning)}
-                   {:ui/locale-selector (prim/get-query LocaleSelector)}]}
+(defsc Root [this {:keys [root/meaning ui/locale-selector]}]
+  {:initial-state {:root/meaning         {}
+                   ::i18n/current-locale {:locale :en :name "English"}
+                   :ui/locale-selector   {:locales [{:locale :en :name "English" :translations {}} {:locale :es :name "Espanol"}]}}
+   :query         [{::i18n/current-locale (prim/get-query i18n/Locale)}
+                   {:ui/locale-selector (prim/get-query i18n/LocaleSelector)}
+                   {:root/meaning (prim/get-query Meaning)}]}
   (dom/div nil
-    (ui-locale locale-selector)
+    (i18n/ui-locale-selector locale-selector)
     (ui-meaning meaning)))
 {{/demo?}}
 {{#nodemo?}}
