@@ -17,8 +17,6 @@
 
 (defn cljsbuild-paths [render data]
   [[".gitignore" (render "gitignore" data)]
-   ["i18n/es.po" (render "i18n/es.po" data)]
-   ["i18n/messages.pot" (render "i18n/messages.pot" data)]
    ["Makefile" (render "Makefile" data)]
    ["package.json" (render "package.json" data)]
    ["project.clj" (render "project.clj" data)]
