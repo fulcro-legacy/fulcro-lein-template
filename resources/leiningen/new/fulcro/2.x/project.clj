@@ -5,8 +5,8 @@
 
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.9.946"]
-                 [fulcrologic/fulcro "2.2.0"]
-                 [fulcrologic/fulcro-spec "2.0.0-beta3" :scope "test" :exclusions [fulcrologic/fulcro]]]
+                 [fulcrologic/fulcro "2.3.1"]
+                 [fulcrologic/fulcro-spec "2.0.3-1" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
 
@@ -63,8 +63,8 @@
                                            :compiler     {:asset-path    "i18n"
                                                           :main          {{name}}.client-main
                                                           :optimizations :whitespace
-                                                          :output-dir    "i18n/tmp"
-                                                          :output-to     "i18n/i18n.js"}}
+                                                          :output-dir    "target/i18n"
+                                                          :output-to     "target/i18n.js"}}
                                           {:id           "test"
                                            :source-paths ["src/test" "src/main"]
                                            :figwheel     {:on-jsload "{{name}}.client-test-main/client-tests"}
@@ -96,8 +96,8 @@
                                          [lein-doo "0.1.7"]
                                          [com.jakemccrary/lein-test-refresh "0.21.1"]]
 
-                          :dependencies [[binaryage/devtools "0.9.8"]
-                                         [fulcrologic/fulcro-inspect "2.0.0-alpha5"]
+                          :dependencies [[binaryage/devtools "0.9.9"]
+                                         [fulcrologic/fulcro-inspect "2.0.0-alpha6"]
                                          [org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
                                          [com.cemerick/piggieback "0.2.2"]

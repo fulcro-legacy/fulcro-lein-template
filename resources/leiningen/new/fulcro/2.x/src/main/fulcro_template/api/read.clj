@@ -1,6 +1,7 @@
 (ns {{name}}.api.read
   (:require
-    [fulcro.server :refer [defquery-entity]]
+    [fulcro.server :refer [defquery-entity defquery-root]]
+    [fulcro.alpha.i18n :as i18n]
     [taoensso.timbre :as timbre]))
 
 ;; Server queries can go here
@@ -15,4 +16,11 @@
       (timbre/info "Thinking about the meaning of " query "...hmmm...")
       (Thread/sleep 3000)
       (select-keys meanings query))))
+
+ ; locale serving from PO files
+(defquery-root ::i18n/translations
+  (value [env {:keys [locale]}]
+    (if-let [translations (i18n/load-locale "i18n" locale)]
+      translations
+      nil)))
 {{/demo?}}
