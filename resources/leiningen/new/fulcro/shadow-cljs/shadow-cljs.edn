@@ -12,9 +12,9 @@
                                   :http-port 8020}}
 
           :i18n     {:target           :browser
-                     :output-dir       "i18n"
+                     :output-dir       "target/i18n"
                      :asset-path       "/"
-                     :modules          {:app {:entries [{{name}}.client]}}
+                     :modules          {:i18n {:entries [{{name}}.client]}}
                      :compiler-options {:optimization :whitespace}}
 
           :test     {:target    :browser-test

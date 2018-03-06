@@ -18,7 +18,3 @@ out
 package-lock.json
 resources/private
 .lein-repl-history
-i18n/app.js
-i18n/*.mo
-i18n/*~
-i18n/manifest.edn
