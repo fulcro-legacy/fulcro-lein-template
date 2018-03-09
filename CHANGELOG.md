@@ -2,6 +2,11 @@
 ------
 - Version updates
 - Ported i18n to new alpha version
+2.0.20
+------
+- Changed to shadow-cljs by default
+- Upgraded dependencies
+- Changed the shadow-cljs build a bit, which reduced uberjar size
 
 2.0.17
 ------
