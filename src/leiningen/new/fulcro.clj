@@ -79,19 +79,19 @@
    ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/fulcro_template/sample_spec.cljc" data)]])
 
 (defn usage []
-  (main/info "Usage: lein new fulcro app-name [-h|demo|nodemo|v1|shadow-cljs]")
+  (main/info "Usage: lein new fulcro app-name [-h|demo|nodemo|figwheel]")
   (main/info "       lein new fulcro -h")
-  (main/info " -h          : This help")
-  (main/info " demo        : Include demo code")
-  (main/info " nodemo      : No demo code (it will ask if you don't specify this)")
-  (main/info " shadow-cljs : Generate a Fulcro 2.x app that uses shadow-cljs instead of figwheel/cljsbuild. Better for using npm native js libraries."))
+  (main/info " -h        : This help")
+  (main/info " demo      : Include demo code")
+  (main/info " nodemo    : No demo code (it will ask if you don't specify this)")
+  (main/info " figwheel  : Generate a Fulcro 2.x app that uses figwheel and stock Clojurescript compiler instead of shadow-cljs."))
 
 (defn fulcro
   "Generates a simple Fulcro template project"
   [name & add-ons]
   (let [add-ons       (set add-ons)
         help-options  #{"-h" "--help" "help"}
-        legal-options (set/union help-options #{"demo" "nodemo" "v1" "shadow-cljs"})
+        legal-options (set/union help-options #{"demo" "nodemo" "figwheel"})
         bad-options   (set/difference add-ons legal-options)
         error?        (seq bad-options)
         help?         (or
@@ -106,7 +106,7 @@
         demo-options     #{"demo" "nodemo"}
         demo-specified?  (-> demo-options (set/intersection add-ons) seq boolean)
         demo-prompt-yes? (when-not demo-specified? (= "y" (prompt "Do you want demo content? [y/n] " #{"y" "n"})))
-        shadowcljs?      (contains? add-ons "shadow-cljs")
+        shadowcljs?      (not (contains? add-ons "figwheel"))
         demo?            (or demo-prompt-yes? (contains? add-ons "demo"))]
     (let [data     {:name      name
                     :demo?     demo?
@@ -119,6 +119,8 @@
           files    (if shadowcljs?
                      (shadowcljs-paths render data)
                      (cljsbuild-paths render data))]
+      (when shadowcljs?
+        (main/info "NOTE: The DEFAULT compiler is now shadow-cljs. Use the `figwheel` option to get a figwheel project instead."))
       (main/info "Generating Fulcro project with options " add-ons)
       (apply ->files data files))))
 
