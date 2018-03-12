@@ -4,8 +4,9 @@
   :min-lein-version "2.7.0"
 
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [fulcrologic/fulcro "2.3.1" :exclusions [org.clojure/clojurescript]]
-                 [fulcrologic/fulcro-spec "2.0.3-1" :scope "test" :exclusions [fulcrologic/fulcro]]]
+                 [org.clojure/clojurescript "1.9.946"]
+                 [fulcrologic/fulcro "2.3.1"]
+                 [fulcrologic/fulcro-spec "2.0.4" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
 
@@ -16,15 +17,15 @@
                  :with-repl    true
                  :changes-only true}
 
-  :profiles {:uberjar    {:main           {{name}}.server-main
-                          :aot            :all
-                          :jar-exclusions [#"public/js/test" #"public/js/cards" #"public/cards.html"]
-                          :prep-tasks     ["clean" ["clean"]
-                                           "compile" ["with-profile" "cljs" "run" "-m" "shadow.cljs.devtools.cli" "release" "main"]]}
+  :profiles {:uberjar    {:main {{name}}.server-main
+                                :aot :all
+                                :jar-exclusions [#"public/js/test" #"public/js/cards" #"public/cards.html"]
+                                :prep-tasks ["clean" ["clean"]
+                                             "compile" ["with-profile" "cljs" "run" "-m" "shadow.cljs.devtools.cli" "release" "main"]]}
              :production {}
              :cljs       {:source-paths ["src/main" "src/test" "src/cards"]
                           :dependencies [[binaryage/devtools "0.9.9"]
-                                         [thheller/shadow-cljs "2.2.6"]
+                                         [thheller/shadow-cljs "2.2.8"]
                                          [org.clojure/core.async "0.3.465"]
                                          [fulcrologic/fulcro-inspect "2.0.0"]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]}
