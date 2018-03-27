@@ -79,19 +79,20 @@
    ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/fulcro_template/sample_spec.cljc" data)]])
 
 (defn usage []
-  (main/info "Usage: lein new fulcro app-name [-h|demo|nodemo|figwheel]")
+  (main/info "Usage: lein new fulcro app-name [-h|demo|nodemo|figwheel|shadow-cljs ...]")
   (main/info "       lein new fulcro -h")
-  (main/info " -h        : This help")
-  (main/info " demo      : Include demo code")
-  (main/info " nodemo    : No demo code (it will ask if you don't specify this)")
-  (main/info " figwheel  : Generate a Fulcro 2.x app that uses figwheel and stock Clojurescript compiler instead of shadow-cljs."))
+  (main/info " -h          : This help")
+  (main/info " demo        : Include demo code")
+  (main/info " nodemo      : No demo code (it will ask if you don't specify this)")
+  (main/info " shadow-cljs : Use shadow-cljs instead of figwheel (better if using js libraries from npm).")
+  (main/info " figwheel    : (default) Generate a Fulcro 2.x app that uses figwheel and stock Clojurescript compiler."))
 
 (defn fulcro
   "Generates a simple Fulcro template project"
   [name & add-ons]
   (let [add-ons       (set add-ons)
         help-options  #{"-h" "--help" "help"}
-        legal-options (set/union help-options #{"demo" "nodemo" "figwheel"})
+        legal-options (set/union help-options #{"demo" "nodemo" "figwheel" "shadow-cljs"})
         bad-options   (set/difference add-ons legal-options)
         error?        (seq bad-options)
         help?         (or
@@ -101,28 +102,25 @@
       (main/warn "Illegal argument(s): " (str/join "," bad-options)))
     (when help?
       (usage)
-      (main/exit 0)))
-  (let [add-ons          (set add-ons)
-        demo-options     #{"demo" "nodemo"}
-        demo-specified?  (-> demo-options (set/intersection add-ons) seq boolean)
-        demo-prompt-yes? (when-not demo-specified? (= "y" (prompt "Do you want demo content? [y/n] " #{"y" "n"})))
-        shadowcljs?      (not (contains? add-ons "figwheel"))
-        demo?            (or demo-prompt-yes? (contains? add-ons "demo"))]
-    (let [data     {:name      name
-                    :demo?     demo?
-                    :nodemo?   (not demo?)
-                    :sanitized (name-to-path name)}
-          base-dir (if shadowcljs?
-                     "shadow-cljs/"
-                     "2.x/")
-          render   (fn [filename data] (render (str base-dir filename) data))
-          files    (if shadowcljs?
-                     (shadowcljs-paths render data)
-                     (cljsbuild-paths render data))]
-      (when shadowcljs?
-        (main/info "NOTE: The DEFAULT compiler is now shadow-cljs. Use the `figwheel` option to get a figwheel project instead."))
-      (main/info "Generating Fulcro project with options " add-ons)
-      (apply ->files data files))))
+      (main/exit 0))
+    (let [demo-options     #{"demo" "nodemo"}
+          demo-specified?  (-> demo-options (set/intersection add-ons) seq boolean)
+          demo-prompt-yes? (when-not demo-specified? (= "y" (prompt "Do you want demo content? [y/n] " #{"y" "n"})))
+          shadowcljs?      (contains? add-ons "shadow-cljs")
+          demo?            (or demo-prompt-yes? (contains? add-ons "demo"))]
+      (let [data     {:name      name
+                      :demo?     demo?
+                      :nodemo?   (not demo?)
+                      :sanitized (name-to-path name)}
+            base-dir (if shadowcljs?
+                       "shadow-cljs/"
+                       "2.x/")
+            render   (fn [filename data] (render (str base-dir filename) data))
+            files    (if shadowcljs?
+                       (shadowcljs-paths render data)
+                       (cljsbuild-paths render data))]
+        (main/info "Generating Fulcro project with options " add-ons)
+        (apply ->files data files)))))
 
 
 

@@ -5,7 +5,7 @@
 
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.9.946"]
-                 [fulcrologic/fulcro "2.4.1"]
+                 [fulcrologic/fulcro "2.4.3"]
                  [fulcrologic/fulcro-spec "2.0.4" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
@@ -93,7 +93,7 @@
                                                           :source-map-timestamp true}}]}
 
                           :plugins      [[lein-cljsbuild "1.1.7"]
-                                         [lein-doo "0.1.7"]
+                                         [lein-doo "0.1.10"]
                                          [com.jakemccrary/lein-test-refresh "0.21.1"]]
 
                           :dependencies [[binaryage/devtools "0.9.9"]
@@ -101,7 +101,7 @@
                                          [org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
                                          [com.cemerick/piggieback "0.2.2"]
-                                         [lein-doo "0.1.7" :scope "test"]
+                                         [lein-doo "0.1.10" :scope "test"]
                                          [figwheel-sidecar "0.5.15" :exclusions [org.clojure/tools.reader]]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]
                           :repl-options {:init-ns          user
