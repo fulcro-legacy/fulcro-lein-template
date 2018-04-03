@@ -1,3 +1,6 @@
+2.0.25-SNAPSHOT
+------
+
 2.0.24
 ------
 - Added shadow-cljs option to the usage info
