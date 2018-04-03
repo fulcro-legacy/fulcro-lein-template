@@ -1,5 +1,6 @@
 2.0.25-SNAPSHOT
 ------
+- Fixed bug preventing namespaced clients from starting under shadow-cljs
 
 2.0.24
 ------
