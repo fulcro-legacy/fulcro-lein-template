@@ -1,1 +1,1 @@
-/Users/tonykay/fulcrologic/fulcro-lein-template/resources/leiningen/new/fulcro/2.x/src/main/fulcro_template/api/mutations.clj
+../../../../../2.x/src/main/fulcro_template/api/mutations.clj

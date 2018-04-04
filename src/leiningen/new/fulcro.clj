@@ -1,5 +1,5 @@
 (ns leiningen.new.fulcro
-  (:require [leiningen.new.templates :refer [renderer name-to-path ->files]]
+  (:require [leiningen.new.templates :refer [renderer name-to-path ->files sanitize]]
             [leiningen.core.main :as main]
             [clojure.set :as set]
             [clojure.string :as str]))
@@ -111,6 +111,7 @@
       (let [data     {:name      name
                       :demo?     demo?
                       :nodemo?   (not demo?)
+                      :js-name   (sanitize name)
                       :sanitized (name-to-path name)}
             base-dir (if shadowcljs?
                        "shadow-cljs/"

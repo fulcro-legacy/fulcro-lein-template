@@ -1,3 +1,21 @@
+2.0.25-SNAPSHOT
+------
+- Fixed bug preventing namespaced clients from starting under shadow-cljs
+
+2.0.24
+------
+- Added shadow-cljs option to the usage info
+- Upgraded dependencies
+
+2.0.23
+------
+- Added shadow-cljs compiler options required to make mocking work
+- Upgraded dependencies
+
+2.0.22
+------
+- Upgraded dependencies
+
 2.0.21
 ------
 - Update spec against shadow-cljs to fix problem
