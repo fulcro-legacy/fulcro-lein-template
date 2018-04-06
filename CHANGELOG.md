@@ -1,6 +1,7 @@
 2.0.25-SNAPSHOT
 ------
 - Fixed bug preventing namespaced clients from starting under shadow-cljs
+- Ported to Fulcro 2.5
 
 2.0.24
 ------
