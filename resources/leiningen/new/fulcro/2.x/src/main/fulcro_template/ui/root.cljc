@@ -2,10 +2,10 @@
   (:require
     [fulcro.client.mutations :as m]
     [fulcro.client.data-fetch :as df]
-    [fulcro.client.dom :as dom]
+    #?(:cljs [fulcro.client.dom :as dom] :clj [fulcro.client.dom-server :as dom])
     [{{name}}.api.mutations :as api]
     [fulcro.client.primitives :as prim :refer [defsc]]
-    [fulcro.alpha.i18n :as i18n :refer [tr trf]]))
+    [fulcro.i18n :as i18n :refer [tr trf]]))
 
 ;; The main UI of your application
 

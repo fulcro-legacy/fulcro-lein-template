@@ -1,6 +1,6 @@
 (ns {{name}}.client
   (:require [fulcro.client :as fc]
-            [fulcro.alpha.i18n :as i18n]
+            [fulcro.i18n :as i18n]
             yahoo.intl-messageformat-with-locales))
 
 (defn message-format [{:keys [::i18n/localized-format-string ::i18n/locale ::i18n/format-options]}]
