@@ -1,7 +1,7 @@
 (ns {{name}}.ui.components
   (:require
     [fulcro.client.primitives :as prim :refer [defsc]]
-    [fulcro.client.dom :as dom]))
+    #?(:cljs [fulcro.client.dom :as dom] :clj [fulcro.client.dom-server :as dom])))
 
 ;; A good place to put reusable components
 (defsc PlaceholderImage [this {:keys [w h label]}]

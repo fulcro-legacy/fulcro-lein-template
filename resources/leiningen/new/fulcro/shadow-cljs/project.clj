@@ -4,9 +4,9 @@
   :min-lein-version "2.7.0"
 
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.9.946"]
-                 [fulcrologic/fulcro "2.4.3"]
-                 [fulcrologic/fulcro-spec "2.0.4" :scope "test" :exclusions [fulcrologic/fulcro]]]
+                 [org.clojure/clojurescript "1.10.238"]
+                 [fulcrologic/fulcro "2.5.0-beta1"]
+                 [fulcrologic/fulcro-spec "2.1.0-1" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
 
@@ -24,10 +24,10 @@
                                              "compile" ["with-profile" "cljs" "run" "-m" "shadow.cljs.devtools.cli" "release" "main"]]}
              :production {}
              :cljs       {:source-paths ["src/main" "src/test" "src/cards"]
-                          :dependencies [[binaryage/devtools "0.9.9"]
-                                         [thheller/shadow-cljs "2.2.17"]
+                          :dependencies [[binaryage/devtools "0.9.10"]
+                                         [thheller/shadow-cljs "2.2.25"]
                                          [org.clojure/core.async "0.4.474"]
-                                         [fulcrologic/fulcro-inspect "2.0.0" :exclusions [fulcrologic/fulcro-css]]
+                                         [fulcrologic/fulcro-inspect "2.0.1" :exclusions [fulcrologic/fulcro-css]]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]}
              :dev        {:source-paths ["src/dev" "src/main" "src/cards"]
                           :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-client" "-XX:+TieredCompilation" "-XX:TieredStopAtLevel=1"

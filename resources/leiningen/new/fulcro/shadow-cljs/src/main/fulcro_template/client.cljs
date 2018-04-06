@@ -1,12 +1,12 @@
 (ns {{name}}.client
   (:require [fulcro.client :as fc]
             [{{name}}.ui.root :as root]
-            [fulcro.alpha.i18n :as i18n]
-            yahoo.intl-messageformat-with-locales))
+            [fulcro.i18n :as i18n]
+            ["intl-messageformat" :as IntlMessageFormat]))
 
 (defn message-format [{:keys [::i18n/localized-format-string ::i18n/locale ::i18n/format-options]}]
   (let [locale-str (name locale)
-        formatter  (js/IntlMessageFormat. localized-format-string locale-str)]
+        formatter  (IntlMessageFormat. localized-format-string locale-str)]
     (.format formatter (clj->js format-options))))
 
 (defonce app (atom nil))
