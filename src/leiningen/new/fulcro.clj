@@ -25,6 +25,7 @@
    ["resources/i18n/messages.pot" (render "resources/i18n/messages.pot" data)]
    ["resources/public/cards.html" (render "resources/public/cards.html" data)]
    ["resources/public/index.html" (render "resources/public/index.html" data)]
+   ["resources/public/intl-messageformat-with-locales.min.js" (render "resources/public/intl-messageformat-with-locales.min.js" data)]
    ["script/figwheel.clj" (render "script/figwheel.clj" data)]
    ["src/cards/{{sanitized}}/cards.cljs" (render "src/cards/fulcro_template/cards.cljs" data)]
    ["src/cards/{{sanitized}}/intro.cljs" (render "src/cards/fulcro_template/intro.cljs" data)]
