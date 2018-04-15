@@ -1,4 +1,4 @@
-(ns {{name}}.client-test-main
+(ns ^:dev/always {{name}}.client-test-main
   (:require [fulcro-spec.selectors :as sel]
             [fulcro-spec.suite :as suite]))
 
@@ -6,11 +6,4 @@
   {:default   #{::sel/none :focused}
    :available #{:focused}})
 
-(defn start []
-  (client-tests))
-
-(defn stop [done]
-  (done))
-
-(defn ^:export init []
-  (start))
+(client-tests)

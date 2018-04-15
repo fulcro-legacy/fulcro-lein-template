@@ -8,7 +8,7 @@ i18n-extract:
 	@echo "Building Clojurescript"
 	@lein cljsbuild once i18n
 	@echo "Running extraction"
-	@xgettext --from-code=UTF-8 --debug -k -ktr_alpha:1 -ktrc_alpha:1c,2 -ktrf_alpha:1 -o resources/i18n/messages.pot target/i18n.js
+	@xgettext --from-code=UTF-8 --debug -k -ktr:1 -ktrc:1c,2 -ktrf:1 -o resources/i18n/messages.pot target/i18n.js
 	@echo "Done."
 	@echo 
 	@echo "Use msgmerge to merge the new messages.pot with existing translations."

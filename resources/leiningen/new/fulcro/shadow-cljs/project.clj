@@ -4,9 +4,17 @@
   :min-lein-version "2.7.0"
 
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.9.946"]
-                 [fulcrologic/fulcro "2.4.3"]
-                 [fulcrologic/fulcro-spec "2.0.4" :scope "test" :exclusions [fulcrologic/fulcro]]]
+                 [thheller/shadow-cljs "2.2.29"]
+                 [fulcrologic/fulcro "2.5.0"]
+
+                 ; Only required if you use server
+                 [http-kit "2.2.0"]
+                 [ring/ring-core "1.6.3" :exclusions [commons-codec]]
+                 [bk/ring-gzip "0.2.1"]
+                 [bidi "2.1.3"]
+
+                 ; only required if you want to use this for tests
+                 [fulcrologic/fulcro-spec "2.1.0-1" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
 
@@ -24,10 +32,9 @@
                                              "compile" ["with-profile" "cljs" "run" "-m" "shadow.cljs.devtools.cli" "release" "main"]]}
              :production {}
              :cljs       {:source-paths ["src/main" "src/test" "src/cards"]
-                          :dependencies [[binaryage/devtools "0.9.9"]
-                                         [thheller/shadow-cljs "2.2.17"]
+                          :dependencies [[binaryage/devtools "0.9.10"]
                                          [org.clojure/core.async "0.4.474"]
-                                         [fulcrologic/fulcro-inspect "2.0.0" :exclusions [fulcrologic/fulcro-css]]
+                                         [fulcrologic/fulcro-inspect "2.0.1"]
                                          [devcards "0.2.4" :exclusions [cljsjs/react cljsjs/react-dom]]]}
              :dev        {:source-paths ["src/dev" "src/main" "src/cards"]
                           :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-client" "-XX:+TieredCompilation" "-XX:TieredStopAtLevel=1"
