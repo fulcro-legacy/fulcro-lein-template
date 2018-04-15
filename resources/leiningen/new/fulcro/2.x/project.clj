@@ -5,7 +5,15 @@
 
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
-                 [fulcrologic/fulcro "2.5.0-beta1"]
+                 [fulcrologic/fulcro "2.5.0"]
+
+                 ; Only required if you use server
+                 [http-kit "2.2.0"]
+                 [ring/ring-core "1.6.3" :exclusions [commons-codec]]
+                 [bk/ring-gzip "0.2.1"]
+                 [bidi "2.1.3"]
+
+                 ; only required if you want to use this for tests
                  [fulcrologic/fulcro-spec "2.1.0-1" :scope "test" :exclusions [fulcrologic/fulcro]]]
 
   :uberjar-name "{{sanitized}}.jar"
@@ -96,7 +104,7 @@
                                          [lein-doo "0.1.10"]
                                          [com.jakemccrary/lein-test-refresh "0.21.1"]]
 
-                          :dependencies [[binaryage/devtools "0.9.9"]
+                          :dependencies [[binaryage/devtools "0.9.10"]
                                          [fulcrologic/fulcro-inspect "2.0.1" :exclusions [fulcrologic/fulcro-css]]
                                          [org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
