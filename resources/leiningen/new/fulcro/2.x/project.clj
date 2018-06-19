@@ -4,8 +4,8 @@
   :min-lein-version "2.7.0"
 
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.238"]
-                 [fulcrologic/fulcro "2.5.0"]
+                 [org.clojure/clojurescript "1.10.312"]
+                 [fulcrologic/fulcro "2.5.9"]
 
                  ; Only required if you use server
                  [http-kit "2.2.0"]
@@ -105,7 +105,7 @@
                                          [com.jakemccrary/lein-test-refresh "0.21.1"]]
 
                           :dependencies [[binaryage/devtools "0.9.10"]
-                                         [fulcrologic/fulcro-inspect "2.0.1" :exclusions [fulcrologic/fulcro-css]]
+                                         [fulcrologic/fulcro-inspect "2.1.0" :exclusions [fulcrologic/fulcro-css]]
                                          [org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
                                          [com.cemerick/piggieback "0.2.2"]

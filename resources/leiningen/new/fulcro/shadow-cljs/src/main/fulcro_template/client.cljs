@@ -20,5 +20,6 @@
 (defn ^:export init []
   (reset! app (fc/new-fulcro-client
                      :reconciler-options {:shared    {::i18n/message-formatter message-format}
+                                          :render-mode :keyframe ; Good for beginners. Remove to optimize UI refresh
                                           :shared-fn ::i18n/current-locale}))
   (start))

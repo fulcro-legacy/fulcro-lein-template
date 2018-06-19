@@ -1,13 +1,4 @@
-2.0.27
-------
-- Added keyframe option for beginners
-- Updated versions
-
-2.0.26
-------
-- Updated version
-
-2.0.25
+2.0.25-SNAPSHOT
 ------
 - Fixed bug preventing namespaced clients from starting under shadow-cljs
 - Ported to Fulcro 2.5
