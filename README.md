@@ -16,6 +16,14 @@ lein new fulcro project-name
 
 If you don't specify demo/nodemo, you will be asked.
 
+## Emacs Cider Integration
+
+If you plan on using cider with emacs and shadow-cljs, for an integrated repl, then you will have to add cider as a dependency. You have to put it in the cljs profile in project.clj.
+
+```
+[cider/cider-nrepl "X.X.X"]
+```
+
 ## License
 
 Copyright © 2017 Fulcrologic
