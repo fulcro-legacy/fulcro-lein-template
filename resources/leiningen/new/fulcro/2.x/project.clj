@@ -5,10 +5,10 @@
 
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.339"]
-                 [fulcrologic/fulcro "2.6.0-RC5"]
+                 [fulcrologic/fulcro "2.6.0-RC9"]
 
                  ; Only required if you use server
-                 [http-kit "2.2.0"]
+                 [http-kit "2.3.0"]
                  [ring/ring-core "1.6.3" :exclusions [commons-codec]]
                  [bk/ring-gzip "0.2.1"]
                  [bidi "2.1.3"]
@@ -105,7 +105,7 @@
                                          [com.jakemccrary/lein-test-refresh "0.21.1"]]
 
                           :dependencies [[binaryage/devtools "0.9.10"]
-                                         [fulcrologic/fulcro-inspect "2.2.1" :exclusions [fulcrologic/fulcro-css]]
+                                         [fulcrologic/fulcro-inspect "2.2.1"]
                                          [org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
                                          [com.cemerick/piggieback "0.2.2"]
