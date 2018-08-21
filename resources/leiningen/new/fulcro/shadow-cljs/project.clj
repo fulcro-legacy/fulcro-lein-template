@@ -5,10 +5,10 @@
 
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [thheller/shadow-cljs "2.4.22"]
-                 [fulcrologic/fulcro "2.6.0-RC5"]
+                 [fulcrologic/fulcro "2.6.0-RC9"]
 
                  ; Only required if you use server
-                 [http-kit "2.2.0"]
+                 [http-kit "2.3.0"]
                  [ring/ring-core "1.6.3" :exclusions [commons-codec]]
                  [bk/ring-gzip "0.2.1"]
                  [bidi "2.1.3"]
