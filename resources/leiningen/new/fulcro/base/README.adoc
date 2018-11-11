@@ -1,0 +1,240 @@
+== The Project
+
+The main project source is in `src/main`.
+
+```
+├── Makefile                              Simple UNIX make. `make` will run clj/cljs CI tests
+├── karma.conf.js                         CLJS CI tests run through karma
+├── package.json                          JS ecosystem dependencies
+├── project.clj                           Project config file
+├── resources
+│   └── public
+│       ├── favicon.ico                   Placeholder favicon
+│       ├── js
+│       │   └── test
+│       │       └── index.html            For accessing fulcro-spec tests in dev mode
+│       └── workspaces.html               For accessing workspaces
+├── shadow-cljs.edn                       Shadow-CLJS Compiler config
+└── src
+    ├── dev
+    │   └── user.clj                      Dev-time functions for controlling web server
+    ├── main
+    │   ├── app
+    │   │   ├── client.cljs               Base client definition
+    │   │   ├── development_preload.cljs  Code that will load early in the browser at dev time.
+    │   │   ├── server_components
+    │   │   │   ├── config.clj            Mount component to load server config (see Fulcro config)
+    │   │   │   ├── http_server.clj       Mount component for http kit server
+    │   │   │   └── middleware.clj        Main middleware for your web server
+    │   │   ├── server_main.clj           CLJ Main for running server from uberjar
+    │   │   └── ui
+    │   │       ├── components.cljs       A place to put random components
+    │   │       └── root.cljs             The root of the main CLJS UI
+    │   └── config
+    │       ├── defaults.edn              Base config file. Sets defaults loaded by server.
+    │       ├── dev.edn                   Dev-time server config. Can override/disable things like SSL
+    │       └── prod.edn                  Production config. Can enable things like proxy support.
+    ├── test
+    │   └── app
+    │       ├── client_test_main.cljs     Namespace that runs fulcro client specs
+    │       └── sample_spec.cljc          A sample spec that runs against clj AND cljs
+    └── workspaces
+        └── app
+            ├── demo_ws.cljs              A sample workspace with a Fulcro card.
+            └── workspaces.cljs           Workspaces setup. Include card nses in this one.
+```
+
+== Setting Up
+
+The shadow-cljs compiler uses all cljsjs and NPM js dependencies through
+NPM. If you use a library that is in cljsjs you will also have to add
+it to your `package.json`.
+
+You also cannot compile this project until you install the ones it
+depends on already:
+
+```
+$ npm install
+```
+
+or if you prefer `yarn`:
+
+```
+$ yarn install
+```
+
+Adding NPM Javascript libraries is as simple as adding them to your
+`package.json` file and requiring them! See the
+[the Shadow-cljs User's Guide](https://shadow-cljs.github.io/docs/UsersGuide.html#_javascript)
+for more information.
+
+== Development Mode
+
+Shadow-cljs handles the client-side development build. The file
+`src/main/app/client.cljs` contains the code to start and refresh
+the client for hot code reload.
+
+In general it is easiest just to run the compiler in server mode:
+
+```
+$ npx shadow-cljs server
+INFO: XNIO version 3.3.8.Final
+Nov 10, 2018 8:08:23 PM org.xnio.nio.NioXnio <clinit>
+INFO: XNIO NIO Implementation Version 3.3.8.Final
+shadow-cljs - HTTP server for :main available at http://localhost:8020
+shadow-cljs - HTTP server for :test available at http://localhost:8022
+shadow-cljs - HTTP server for :workspaces available at http://localhost:8023
+shadow-cljs - server version: 2.7.2
+shadow-cljs - server running at http://localhost:9630
+shadow-cljs - socket REPL running on port 51936
+shadow-cljs - nREPL server started on port 9000
+...
+```
+
+then *navigate to the server URL* (shown in this example as http://localhost:9630) and
+use the *Builds* menu to enable/disable whichever builds you want watched/running.
+
+Shadow-cljs will also start a web server for any builds that configure one. This
+template configures one for workspaces, and one for tests:
+
+- Workspaces: [http://localhost:8023/workspaces.html](http://localhost:8023/workspaces.html)
+- Tests: [http://localhost:8022](http://localhost:8022)
+
+See the server section below for working on the full-stack app itself.
+
+=== Client REPL
+
+The shadow-cljs compiler starts an nREPL. It is configured to start on
+port 9000 (in `shadow-cljs.edn`).
+
+In IntelliJ: add a *remote* Clojure REPL configuration with
+host `localhost` and port `9000`.
+
+then something like:
+
+```
+(shadow/nrepl-select :main)
+```
+
+will connect you to the REPL for a specific build (NOTE: Make sure you have
+a browser running the result, or your REPL won't have anything to talk to!)
+
+If you're using CIDER
+see [the Shadow-cljs User's Guide](https://shadow-cljs.github.io/docs/UsersGuide.html#_cider)
+for more information.
+
+=== The API Server
+
+In order to work with your main application you'll want to
+start your own server that can also serve your application's API.
+
+Start a LOCAL clj nREPL in IntelliJ, or from the command line:
+
+```bash
+$ lein repl
+user=> (start)
+user=> (stop)
+...
+user=> (restart) ; stop, reload server code, and go again
+user=> (tools-ns/refresh) ; retry code reload if hot server reload fails
+```
+
+The URL to work on your application is then
+[http://localhost:3000](http://localhost:3000).
+
+Hot code reload, preloads, and such are all coded into the javascript.
+
+IMPORTANT: The server comes pre-secured with CSRF protection. If you have
+trouble getting the client to talk to the server make sure you've read
+and understood the security section of the http://book.fulcrologic.com[
+Developer's Guide].
+
+=== Preloads
+
+There is a preload file that is used on the development build of the
+application `app.development-preload`. You can add code here that
+you want to execute before the application initializes in development
+mode.
+
+=== Fulcro Inspect
+
+Fulcro inspect will preload on the development build of the main
+application and workspaces.  You must install the plugin in Chrome from the
+Chrome store (free) to access it.  It will add a Fulcro Inspect tab to the
+developer tools pane.
+
+== Tests
+
+Tests are in `src/test`
+
+```
+src/test
+└── app
+    ├── client_test_main.cljs     entry point for dev-mode client tests
+    └── sample_spec.cljs          spec runnable by client and server.
+```
+
+You can write plain `deftest` in here, but it is preconfigured to use `fulcro-spec` as well.
+
+=== Server tests:
+
+Interacting with tests resuts via a browser (also allows test focusing, etc):
+
+From a CLJ REPL:
+
+```
+user=> (start-server-tests) ; start a server on port 8888 showing the server tests
+```
+
+then navigate to [http://localhost:8888/fulcro-spec-server-tests.html](http://localhost:8888/fulcro-spec-server-tests.html)
+
+If you'd instead like to see them pop up over and over again in a terminal:
+
+```
+lein test-refresh
+```
+
+If you're running an nREPL, you can also use editor/IDE integration to run them, as fulcro-spec
+actually outputs `deftest` under the hood.
+
+=== CI Tests
+
+Use the Makefile target `tests`:
+
+```
+make test
+```
+
+You must have `npm` and Chrome installed. The tests use the `npm`
+utility Karma for actually running the tests. This make target will run
+both client and server tests.
+
+== Workspaces
+
+Workspaces is a project by nubank that has great support for Fulcro. It is similar
+to devcards, but has a more powerful user interface, integration with Fulcro Inspect,
+and much more.
+
+The source directory for making additions to your workspace is `src/workspaces`.
+Remember to add workspace files there, and then make sure to add
+a require the for new namespace in the `workspaces.cljs` file.
+
+=== Workspaces and CSRF
+
+The server comes preconfigured with CSRF protection.  As such, a token must be
+embedded in the HTML for a client to be able to connect.  If you want to run
+full-stack Fulcro cards, then you'll need that token.
+
+The middleware included in this template can serve a workspaces HTML page that
+has the correct token. The URI is `/wslive.html`. So, if your server is configured
+for port 3000 you'd access your workspaces via `http://localhost:3000/wslive.html`.
+
+Be careful with production deployment.  You may want to disable this HTML file and
+make sure your workspaces js file isn't deployed to production.
+
+== Standalone Runnable Jar (Production, with advanced optimized client js)
+
+```
+lein uberjar
+java -jar target/app.jar
+```

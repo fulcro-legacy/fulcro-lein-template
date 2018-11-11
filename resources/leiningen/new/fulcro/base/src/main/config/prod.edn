@@ -1,0 +1,9 @@
+{:http-kit      {:port 8080}
+
+ ;; Legal Origins for API request.
+ :legal-origins #{"product.domain" "localhost"}
+
+ ;; You probably want these set to true in real production:
+ :ring.middleware/defaults-config
+                {:proxy    false
+                 :security {:ssl-redirect false}}}
