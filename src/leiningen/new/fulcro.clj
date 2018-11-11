@@ -1,10 +1,11 @@
 (ns leiningen.new.fulcro
-  (:require [leiningen.new.templates :refer [renderer name-to-path ->files sanitize]]
+  (:require [leiningen.new.templates :refer [renderer name-to-path ->files sanitize raw-resourcer]]
             [leiningen.core.main :as main]
             [clojure.set :as set]
             [clojure.string :as str]))
 
 (def render (renderer "fulcro"))
+(def raw (raw-resourcer "fulcro"))
 
 (defn paths [render data]
   [[".gitignore" (render "gitignore" data)]
@@ -17,6 +18,7 @@
 
    ["resources/public/workspaces.html" (render "resources/public/workspaces.html" data)]
    ["resources/public/js/test/index.html" (render "resources/public/js/test/index.html" data)]
+   ["resources/public/favicon.ico" (raw "resources/public/favicon.ico")]
 
    ["src/workspaces/{{sanitized}}/workspaces.cljs" (render "src/workspaces/app/workspaces.cljs" data)]
    ["src/workspaces/{{sanitized}}/demo_ws.cljs" (render "src/workspaces/app/demo_ws.cljs" data)]
