@@ -1,4 +1,4 @@
-(defproject app "0.1.0-SNAPSHOT"
+(defproject {{name}} "0.1.0-SNAPSHOT"
   :description "My Cool Project"
   :license {:name "MIT" :url "https://opensource.org/licenses/MIT"}
   :min-lein-version "2.7.0"
@@ -29,7 +29,7 @@
                  ; only required if you want to use this for tests
                  [fulcrologic/fulcro-spec "2.1.2" :scope "test"]]
 
-  :uberjar-name "app.jar"
+  :uberjar-name "{{name}}.jar"
 
   :source-paths ["src/main"]
   :test-paths ["src/test"]
@@ -38,7 +38,7 @@
                  :with-repl    true
                  :changes-only true}
 
-  :profiles {:uberjar    {:main           app.server-main
+  :profiles {:uberjar    {:main           {{name}}.server-main
                           :aot            :all
                           :jar-exclusions [#"public/js/test" #"public/js/workspaces" #"public/workspaces.html"]
                           :prep-tasks     ["clean" ["clean"]

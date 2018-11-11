@@ -1,8 +1,8 @@
-(ns app.ui.root
+(ns {{name}}.ui.root
   (:require
     [fulcro.client.dom :as dom :refer [div]]
     [fulcro.client.primitives :as prim :refer [defsc]]
-    [app.ui.components :as comp]))
+    [{{name}}.ui.components :as comp]))
 
 (defsc Root [this {:keys [root/message]}]
   {:query         [:root/message]

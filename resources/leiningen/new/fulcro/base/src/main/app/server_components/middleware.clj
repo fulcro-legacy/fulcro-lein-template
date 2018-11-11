@@ -1,6 +1,6 @@
-(ns app.server-components.middleware
+(ns {{name}}.server-components.middleware
   (:require
-    [app.server-components.config :refer [config]]
+    [{{name}}.server-components.config :refer [config]]
     [mount.core :refer [defstate]]
     [fulcro.server :as server]
     [ring.middleware.defaults :refer [wrap-defaults]]
@@ -52,8 +52,8 @@
       [:script (str "var fulcro_network_csrf_token = '" csrf-token "';")]]
      [:body
       [:div#app]
-      [:script {:src "js/main/app.js"}]
-      [:script "app.client.init();"]]]))
+      [:script {:src "js/main/main.js"}]
+      [:script "{{name}}.client.init();"]]]))
 
 ;; ================================================================================
 ;; Workspaces can be accessed via shadow's http server on http://localhost:8023/workspaces.html

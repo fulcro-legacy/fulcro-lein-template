@@ -1,6 +1,6 @@
-(ns app.client
+(ns {{name}}.client
   (:require [fulcro.client :as fc]
-            [app.ui.root :as root]
+            [{{name}}.ui.root :as root]
             [fulcro.client.network :as net]))
 
 (defonce app (atom nil))

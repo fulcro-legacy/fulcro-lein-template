@@ -19,7 +19,7 @@ The main project source is in `src/main`.
     ├── dev
     │   └── user.clj                      Dev-time functions for controlling web server
     ├── main
-    │   ├── app
+    │   ├── {{sanitized}}
     │   │   ├── client.cljs               Base client definition
     │   │   ├── development_preload.cljs  Code that will load early in the browser at dev time.
     │   │   ├── server_components
@@ -35,11 +35,11 @@ The main project source is in `src/main`.
     │       ├── dev.edn                   Dev-time server config. Can override/disable things like SSL
     │       └── prod.edn                  Production config. Can enable things like proxy support.
     ├── test
-    │   └── app
+    │   └── {{sanitized}}
     │       ├── client_test_main.cljs     Namespace that runs fulcro client specs
     │       └── sample_spec.cljc          A sample spec that runs against clj AND cljs
     └── workspaces
-        └── app
+        └── {{sanitized}}
             ├── demo_ws.cljs              A sample workspace with a Fulcro card.
             └── workspaces.cljs           Workspaces setup. Include card nses in this one.
 ```
@@ -71,7 +71,7 @@ for more information.
 == Development Mode
 
 Shadow-cljs handles the client-side development build. The file
-`src/main/app/client.cljs` contains the code to start and refresh
+`src/main/{{sanitized}}/client.cljs` contains the code to start and refresh
 the client for hot code reload.
 
 In general it is easiest just to run the compiler in server mode:
@@ -152,7 +152,7 @@ Developer's Guide].
 === Preloads
 
 There is a preload file that is used on the development build of the
-application `app.development-preload`. You can add code here that
+application `{{sanitized}}.development-preload`. You can add code here that
 you want to execute before the application initializes in development
 mode.
 
@@ -169,7 +169,7 @@ Tests are in `src/test`
 
 ```
 src/test
-└── app
+└── {{sanitized}}
     ├── client_test_main.cljs     entry point for dev-mode client tests
     └── sample_spec.cljs          spec runnable by client and server.
 ```
@@ -236,5 +236,5 @@ make sure your workspaces js file isn't deployed to production.
 
 ```
 lein uberjar
-java -jar target/app.jar
+java -jar target/{{name}}.jar
 ```

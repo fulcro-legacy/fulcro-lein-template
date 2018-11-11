@@ -1,4 +1,4 @@
-(ns ^:dev/always app.client-test-main
+(ns ^:dev/always {{name}}.client-test-main
   (:require
     [fulcro-spec.selectors :as sel]
     [fulcro-spec.suite :as suite]))

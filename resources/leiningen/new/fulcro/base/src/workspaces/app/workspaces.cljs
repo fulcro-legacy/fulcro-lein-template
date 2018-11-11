@@ -1,6 +1,6 @@
-(ns app.workspaces
+(ns {{name}}.workspaces
   (:require
     [nubank.workspaces.core :as ws]
-    [app.demo-ws]))
+    [{{name}}.demo-ws]))
 
 (defonce init (ws/mount))

@@ -4,23 +4,17 @@
                        :output-dir "resources/public/js/main"
                        :asset-path "/js/main"
 
-                       :modules    {:app {:entries [app.client]}}
+                       :modules    {:main {:entries [{{name}}.client]}}
 
                        :devtools   {:after-load app.client/start
                                     :preloads   [fulcro.inspect.preload app.development-preload]}}
-
-          :i18n       {:target           :browser
-                       :output-dir       "target/i18n"
-                       :asset-path       "/"
-                       :modules          {:i18n {:entries [app.client]}}
-                       :compiler-options {:optimization :whitespace}}
 
           :test       {:target           :browser-test
                        :test-dir         "resources/public/js/test"
                        :ns-regexp        "-spec$"
                        :compiler-options {:static-fns false ; required for mocking to work
                                           }
-                       :runner-ns        app.client-test-main
+                       :runner-ns        {{name}}.client-test-main
                        :devtools         {:http-port          8022
                                           :http-resource-root "public"
                                           :http-root          "resources/public/js/test"}}
@@ -38,4 +32,4 @@
                                     :http-root          "resources/public"
                                     :http-port          8023
                                     :http-resource-root "."}
-                       :modules    {:main {:entries [app.workspaces]}}}}}
+                       :modules    {:main {:entries [{{name}}.workspaces]}}}}}

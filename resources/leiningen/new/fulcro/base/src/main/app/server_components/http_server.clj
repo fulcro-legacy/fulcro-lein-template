@@ -1,7 +1,7 @@
-(ns app.server-components.http-server
+(ns {{name}}.server-components.http-server
   (:require
-    [app.server-components.config :refer [config]]
-    [app.server-components.middleware :refer [middleware]]
+    [{{name}}.server-components.config :refer [config]]
+    [{{name}}.server-components.middleware :refer [middleware]]
     [mount.core :refer [defstate]]
     [org.httpkit.server :as http-kit]))
 
