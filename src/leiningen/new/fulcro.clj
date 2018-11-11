@@ -45,8 +45,6 @@
   (let [data     {:name      name
                   :js-name   (sanitize name)
                   :sanitized (name-to-path name)}
-        base-dir "base/"
-        render   (fn [filename data] (render (str base-dir filename) data))
         files    (paths render data)]
     (main/info "Generating Fulcro project.")
     (apply ->files data files)))
