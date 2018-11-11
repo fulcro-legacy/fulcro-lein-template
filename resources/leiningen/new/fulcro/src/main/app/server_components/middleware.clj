@@ -53,7 +53,7 @@
      [:body
       [:div#app]
       [:script {:src "js/main/main.js"}]
-      [:script "{{name}}.client.init();"]]]))
+      [:script "{{js-name}}.client.init();"]]]))
 
 ;; ================================================================================
 ;; Workspaces can be accessed via shadow's http server on http://localhost:8023/workspaces.html
