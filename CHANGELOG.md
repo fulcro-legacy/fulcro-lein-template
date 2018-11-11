@@ -1,7 +1,11 @@
-2.0.25-SNAPSHOT
+2.0.30
 ------
-- Fixed bug preventing namespaced clients from starting under shadow-cljs
-- Ported to Fulcro 2.5
+- Updated versions
+- Made shadow-cljs the default
+- Removed figwheel option
+- Updated default server to use hand-rolled
+- Added CSRF and other ring defaults to server
+- Updated README
 
 2.0.24
 ------
