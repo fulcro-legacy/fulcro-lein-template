@@ -1,1 +1,0 @@
-../../../../2.x/src/cards/fulcro_template/intro.cljs

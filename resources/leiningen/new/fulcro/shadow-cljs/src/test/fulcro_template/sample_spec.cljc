@@ -1,1 +1,0 @@
-../../../../2.x/src/test/fulcro_template/sample_spec.cljc

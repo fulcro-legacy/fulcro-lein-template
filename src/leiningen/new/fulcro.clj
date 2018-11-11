@@ -15,40 +15,7 @@
         (println question)
         (recur (str/trim-newline (read-line)))))))
 
-(defn cljsbuild-paths [render data]
-  [[".gitignore" (render "gitignore" data)]
-   ["Makefile" (render "Makefile" data)]
-   ["package.json" (render "package.json" data)]
-   ["project.clj" (render "project.clj" data)]
-   ["README.md" (render "README.md" data)]
-   ["resources/i18n/es.po" (render "resources/i18n/es.po" data)]
-   ["resources/i18n/messages.pot" (render "resources/i18n/messages.pot" data)]
-   ["resources/public/cards.html" (render "resources/public/cards.html" data)]
-   ["resources/public/index.html" (render "resources/public/index.html" data)]
-   ["resources/public/intl-messageformat-with-locales.min.js" (render "resources/public/intl-messageformat-with-locales.min.js" data)]
-   ["script/figwheel.clj" (render "script/figwheel.clj" data)]
-   ["src/cards/{{sanitized}}/cards.cljs" (render "src/cards/fulcro_template/cards.cljs" data)]
-   ["src/cards/{{sanitized}}/intro.cljs" (render "src/cards/fulcro_template/intro.cljs" data)]
-   ["src/dev/cljs/user.cljs" (render "src/dev/cljs/user.cljs" data)]
-   ["src/dev/user.clj" (render "src/dev/user.clj" data)]
-   ["src/main/config/defaults.edn" (render "src/main/config/defaults.edn" data)]
-   ["src/main/config/dev.edn" (render "src/main/config/dev.edn" data)]
-   ["src/main/config/prod.edn" (render "src/main/config/prod.edn" data)]
-   ["src/main/{{sanitized}}/api/mutations.clj" (render "src/main/fulcro_template/api/mutations.clj" data)]
-   ["src/main/{{sanitized}}/api/mutations.cljs" (render "src/main/fulcro_template/api/mutations.cljs" data)]
-   ["src/main/{{sanitized}}/api/read.clj" (render "src/main/fulcro_template/api/read.clj" data)]
-   ["src/main/{{sanitized}}/client.cljs" (render "src/main/fulcro_template/client.cljs" data)]
-   ["src/main/{{sanitized}}/client_main.cljs" (render "src/main/fulcro_template/client_main.cljs" data)]
-   ["src/main/{{sanitized}}/server.clj" (render "src/main/fulcro_template/server.clj" data)]
-   ["src/main/{{sanitized}}/server_main.clj" (render "src/main/fulcro_template/server_main.clj" data)]
-   ["src/main/{{sanitized}}/ui/components.cljc" (render "src/main/fulcro_template/ui/components.cljc" data)]
-   ["src/main/{{sanitized}}/ui/root.cljc" (render "src/main/fulcro_template/ui/root.cljc" data)]
-   ["src/test/{{sanitized}}/CI_runner.cljs" (render "src/test/fulcro_template/CI_runner.cljs" data)]
-   ["src/test/{{sanitized}}/client_test_main.cljs" (render "src/test/fulcro_template/client_test_main.cljs" data)]
-   ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/fulcro_template/sample_spec.cljc" data)]
-   ["src/test/{{sanitized}}/tests_to_run.cljs" (render "src/test/fulcro_template/tests_to_run.cljs" data)]])
-
-(defn shadowcljs-paths [render data]
+(defn paths [render data]
   [[".gitignore" (render "gitignore" data)]
    ["karma.conf.js" (render "karma.conf.js" data)]
    ["Makefile" (render "Makefile" data)]
@@ -84,16 +51,14 @@
   (main/info "       lein new fulcro -h")
   (main/info " -h          : This help")
   (main/info " demo        : Include demo code")
-  (main/info " nodemo      : No demo code (it will ask if you don't specify this)")
-  (main/info " shadow-cljs : Use shadow-cljs instead of figwheel (better if using js libraries from npm).")
-  (main/info " figwheel    : (default) Generate a Fulcro 2.x app that uses figwheel and stock Clojurescript compiler."))
+  (main/info " nodemo      : No demo code (it will ask if you don't specify this)"))
 
 (defn fulcro
   "Generates a simple Fulcro template project"
   [name & add-ons]
   (let [add-ons       (set add-ons)
         help-options  #{"-h" "--help" "help"}
-        legal-options (set/union help-options #{"demo" "nodemo" "figwheel" "shadow-cljs"})
+        legal-options (set/union help-options #{"demo" "nodemo"})
         bad-options   (set/difference add-ons legal-options)
         error?        (seq bad-options)
         help?         (or
@@ -114,13 +79,9 @@
                       :nodemo?   (not demo?)
                       :js-name   (sanitize name)
                       :sanitized (name-to-path name)}
-            base-dir (if shadowcljs?
-                       "shadow-cljs/"
-                       "2.x/")
+            base-dir "base/"
             render   (fn [filename data] (render (str base-dir filename) data))
-            files    (if shadowcljs?
-                       (shadowcljs-paths render data)
-                       (cljsbuild-paths render data))]
+            files    (paths render data)]
         (main/info "Generating Fulcro project with options " add-ons)
         (apply ->files data files)))))
 
