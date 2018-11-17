@@ -1,4 +1,4 @@
-{:lein   {:profile "cljs"}
+{:lein   {:profile "cljs,dev"}
  :nrepl  {:port 9000}
  :builds {:main       {:target     :browser
                        :output-dir "resources/public/js/main"
