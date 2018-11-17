@@ -55,6 +55,6 @@
 
                           :dependencies [[org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
-                                         [com.cemerick/piggieback "0.2.2"]]
+                                         [cider/piggieback "0.3.10"]]
                           :repl-options {:init-ns          user
-                                         :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}})
+                                         :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}})
