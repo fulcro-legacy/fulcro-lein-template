@@ -46,7 +46,8 @@
              :production {}
              :cljs       {:source-paths ["src/main" "src/test" "src/workspaces"]
                           :dependencies [[binaryage/devtools "0.9.10"]
-                                         [fulcrologic/fulcro-inspect "2.2.4"]]}
+                                         [fulcrologic/fulcro-inspect "2.2.4"]
+                                         [org.clojure/clojurescript "1.10.439"]]}
              :dev        {:source-paths ["src/dev" "src/main" "src/workspaces"]
                           :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-Xmx1g"]
 
