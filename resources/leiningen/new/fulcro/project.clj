@@ -21,6 +21,7 @@
                  ;; the following 3 are not used directly, but are pinned to ensure consistency.
                  ;; delete then if you upgrade anything and reanalyze deps
                  [commons-codec "1.11"]
+                 [args4j "2.33"]
                  [com.google.errorprone/error_prone_annotations "2.3.2"]
                  [com.google.code.findbugs/jsr305 "3.0.2"]
 
@@ -46,8 +47,7 @@
              :production {}
              :cljs       {:source-paths ["src/main" "src/test" "src/workspaces"]
                           :dependencies [[binaryage/devtools "0.9.10"]
-                                         [fulcrologic/fulcro-inspect "2.2.4"]
-                                         [org.clojure/clojurescript "1.10.439"]]}
+                                         [fulcrologic/fulcro-inspect "2.2.4"]]}
              :dev        {:source-paths ["src/dev" "src/main" "src/workspaces"]
                           :jvm-opts     ["-XX:-OmitStackTraceInFastThrow" "-Xmx1g"]
 
