@@ -4,30 +4,31 @@
   :min-lein-version "2.7.0"
 
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [thheller/shadow-cljs "2.7.2"]
+                 [thheller/shadow-cljs "2.7.3"]
                  [fulcrologic/fulcro "2.6.15"]
                  [com.wsscode/pathom "2.2.0-RC3"]
                  [ring/ring-defaults "0.3.2"]
                  [org.clojure/core.async "0.4.474"]
-                 [garden "1.3.5"]
-                 [mount "0.1.12"]
+                 [garden "1.3.6"]
+                 [mount "0.1.14"]
                  [hiccup "1.0.5"]
 
-                 [http-kit "2.2.0"]
+                 [http-kit "2.3.0"]
                  [ring/ring-core "1.7.1"]
-                 [bk/ring-gzip "0.2.1"]
-                 [bidi "2.1.3"]
+                 [bk/ring-gzip "0.3.0"]
+                 [bidi "2.1.4"]
 
                  ;; the following 3 are not used directly, but are pinned to ensure consistency.
                  ;; delete then if you upgrade anything and reanalyze deps
                  [commons-codec "1.11"]
+                 [args4j "2.33"]
                  [com.google.errorprone/error_prone_annotations "2.3.2"]
                  [com.google.code.findbugs/jsr305 "3.0.2"]
 
                  [nubank/workspaces "1.0.0-preview9" :scope "test" :exclusions [com.cognitect/transit-java]]
 
                  ; only required if you want to use this for tests
-                 [fulcrologic/fulcro-spec "2.1.2" :scope "test"]]
+                 [fulcrologic/fulcro-spec "2.1.3" :scope "test"]]
 
   :uberjar-name "{{name}}.jar"
 
@@ -54,6 +55,6 @@
 
                           :dependencies [[org.clojure/tools.namespace "0.3.0-alpha4"]
                                          [org.clojure/tools.nrepl "0.2.13"]
-                                         [com.cemerick/piggieback "0.2.2"]]
+                                         [cider/piggieback "0.3.10"]]
                           :repl-options {:init-ns          user
-                                         :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}})
+                                         :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}})

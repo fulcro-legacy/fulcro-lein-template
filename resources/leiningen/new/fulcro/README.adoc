@@ -81,7 +81,6 @@ $ npx shadow-cljs server
 INFO: XNIO version 3.3.8.Final
 Nov 10, 2018 8:08:23 PM org.xnio.nio.NioXnio <clinit>
 INFO: XNIO NIO Implementation Version 3.3.8.Final
-shadow-cljs - HTTP server for :main available at http://localhost:8020
 shadow-cljs - HTTP server for :test available at http://localhost:8022
 shadow-cljs - HTTP server for :workspaces available at http://localhost:8023
 shadow-cljs - server version: 2.7.2
