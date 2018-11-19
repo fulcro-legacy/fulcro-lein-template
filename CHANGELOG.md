@@ -1,3 +1,7 @@
+2.0.32
+------
+- More emacs tweaks
+
 2.0.31
 ------
 - Contributed improvements to make emacs ok
