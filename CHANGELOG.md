@@ -1,3 +1,7 @@
+2.0.33
+------
+- Removed origin middleware by default.
+
 2.0.32
 ------
 - More emacs tweaks
