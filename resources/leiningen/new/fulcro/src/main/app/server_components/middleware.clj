@@ -98,8 +98,6 @@
       (wrap-api "/api")
       server/wrap-transit-params
       server/wrap-transit-response
-      (server/wrap-protect-origins {:allow-when-origin-missing? false
-                                    :legal-origins              legal-origins})
       (wrap-html-routes)
       ;; If you want to set something like session store, you'd do it against
       ;; the defaults-config here (which comes from an EDN file, so it can't have

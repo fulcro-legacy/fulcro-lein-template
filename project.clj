@@ -1,4 +1,4 @@
-(defproject fulcro/lein-template "2.0.32"
+(defproject fulcro/lein-template "2.0.33"
   :description "A bare-bones template for new Fulcro full-stack projects."
   :url "https://fulcrologic.github.io/fulcro"
   :license {:name "MIT"
