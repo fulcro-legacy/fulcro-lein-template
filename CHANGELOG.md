@@ -1,3 +1,7 @@
+2.0.34
+------
+- Version bumps
+
 2.0.33
 ------
 - Removed origin middleware by default.
