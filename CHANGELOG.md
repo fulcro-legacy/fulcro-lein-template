@@ -1,3 +1,8 @@
+2.0.35
+------
+- Version changes, moved to pathom on server, added more content,
+updated docs.
+
 2.0.34
 ------
 - Version bumps

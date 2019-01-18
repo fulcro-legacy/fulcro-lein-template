@@ -1,5 +1,19 @@
 == The Project
 
+NOTE: The YouTube videos and Developer's Guide are slightly out of date with respect to this template.  This template
+now uses Pathom for server-side mutation and query handling.  See `{{sanitized}}/server_components/pathom_wrappers.clj` and
+`{{sanitized}}/model/user.clj` for the macro definitions and examples of how to define
+query resolution and mutations on the server-side. The `defmutation` AND `defresolver` in this project look like
+`defn` instead of Fulcro's.
+
+IMPORTANT: This is a Tools Deps Project.  The `project.clj` file is *ONLY* for uberjar generation.  If you're
+opening this project in IntelliJ, open `deps.edn`, NOT `project.clj`.
+
+Dependency Aliases:
+
+You will want to enable the `:dev` dependency while developing this project.  In IntelliJ this is in the
+"Clojure Deps" border tab window under "Aliases".
+
 The main project source is in `src/main`.
 
 ```
@@ -36,12 +50,10 @@ The main project source is in `src/main`.
     │       └── prod.edn                  Production config. Can enable things like proxy support.
     ├── test
     │   └── {{sanitized}}
-    │       ├── client_test_main.cljs     Namespace that runs fulcro client specs
     │       └── sample_spec.cljc          A sample spec that runs against clj AND cljs
     └── workspaces
         └── {{sanitized}}
-            ├── demo_ws.cljs              A sample workspace with a Fulcro card.
-            └── workspaces.cljs           Workspaces setup. Include card nses in this one.
+            └── demo_ws.cljs           Sample workspace card.
 ```
 
 == Setting Up
@@ -96,10 +108,10 @@ use the *Builds* menu to enable/disable whichever builds you want watched/runnin
 Shadow-cljs will also start a web server for any builds that configure one. This
 template configures one for workspaces, and one for tests:
 
-- Workspaces: [http://localhost:8023/workspaces.html](http://localhost:8023/workspaces.html)
+- Workspaces: [http://localhost:8023](http://localhost:8023)
 - Tests: [http://localhost:8022](http://localhost:8022)
 
-See the server section below for working on the full-stack app itself.
+See the server section below for working on the full-stack {{sanitized}} itself.
 
 === Client REPL
 
@@ -120,23 +132,27 @@ a browser running the result, or your REPL won't have anything to talk to!)
 
 If you're using CIDER
 see [the Shadow-cljs User's Guide](https://shadow-cljs.github.io/docs/UsersGuide.html#_cider)
-for more information.
+and the comments in `deps.edn` for more information.
 
 === The API Server
 
 In order to work with your main application you'll want to
 start your own server that can also serve your application's API.
 
-Start a LOCAL clj nREPL in IntelliJ, or from the command line:
+Start a LOCAL clj nREPL in IntelliJ (using IntelliJ's classpath with
+the `dev` alias selected in the Clojure Deps tab), or from the command line:
 
 ```bash
-$ lein repl
+$ clj -A:dev -J-Dtrace
 user=> (start)
 user=> (stop)
 ...
 user=> (restart) ; stop, reload server code, and go again
 user=> (tools-ns/refresh) ; retry code reload if hot server reload fails
 ```
+
+The `-J-Dtrace` adds a JVM argument that will enable performance tracing for Fulcro Inspect's network tab so you can
+see how your resolvers and mutations are performing!
 
 The URL to work on your application is then
 [http://localhost:3000](http://localhost:3000).
@@ -145,8 +161,7 @@ Hot code reload, preloads, and such are all coded into the javascript.
 
 IMPORTANT: The server comes pre-secured with CSRF protection. If you have
 trouble getting the client to talk to the server make sure you've read
-and understood the security section of the http://book.fulcrologic.com[
-Developer's Guide].
+and understood the security section of the http://book.fulcrologic.com[Developer's Guide].
 
 === Preloads
 
@@ -164,59 +179,68 @@ developer tools pane.
 
 == Tests
 
-Tests are in `src/test`
+Tests are in `src/test`. Any test namespace ending in `-test` will be auto-detected.
 
 ```
 src/test
 └── {{sanitized}}
-    ├── client_test_main.cljs     entry point for dev-mode client tests
-    └── sample_spec.cljs          spec runnable by client and server.
+    └── sample_test.cljc          spec runnable by client and server.
 ```
 
-You can write plain `deftest` in here, but it is preconfigured to use `fulcro-spec` as well.
+You can write plain `deftest` in here, and it is preconfigured to support the helper macros in `fulcro-spec` as well.
 
-=== Server tests:
+=== Running tests:
 
-Interacting with tests resuts via a browser (also allows test focusing, etc):
 
-From a CLJ REPL:
+==== Clojure Tests
 
-```
-user=> (start-server-tests) ; start a server on port 8888 showing the server tests
-```
+Typically you'll just run your tests using the editor of choice (e.g. Run tests in namspace in IntelliJ).
 
-then navigate to [http://localhost:8888/fulcro-spec-server-tests.html](http://localhost:8888/fulcro-spec-server-tests.html)
-
-If you'd instead like to see them pop up over and over again in a terminal:
+The tests are also set up to run with Kaocha at the command line for your convenience and CI tools:
 
 ```
-lein test-refresh
+$ clj -A:dev:clj-tests --watch
 ```
 
-If you're running an nREPL, you can also use editor/IDE integration to run them, as fulcro-spec
-actually outputs `deftest` under the hood.
+See the https://github.com/lambdaisland/kaocha[Kaocha project] for more details.
 
-=== CI Tests
+==== Clojurescript tests
 
-Use the Makefile target `tests`:
+The tests can be run in any number of browsers simply by navigating to the test URL that shadow-cljs outputs.
+
+CI support is done through the `ci-test` build in shadow, and via Karma.
+
+If you start the `ci-tests` build in Shadow-cljs, then you can also run cljs tests in a terminal "watch mode"
+with:
 
 ```
-make test
+npx karma start
 ```
 
-You must have `npm` and Chrome installed. The tests use the `npm`
-utility Karma for actually running the tests. This make target will run
-both client and server tests.
+Of course, this make CLJS CI easy:
+
+```
+npx shadow-cljs compile ci-tests
+npx karma start --single-run
+```
+
+==== Running all Tests Once
+
+There is a UNIX Makefile that includes all of the CI commands as the default target. Just run:
+
+```
+make
+```
 
 == Workspaces
 
-Workspaces is a project by nubank that has great support for Fulcro. It is similar
-to devcards, but has a more powerful user interface, integration with Fulcro Inspect,
+Workspaces is a project by Nubank that is written in Fulcro, and has great support for developing in
+Fulcro. It is similar to devcards but has a more powerful user interface, integration with Fulcro Inspect,
 and much more.
 
 The source directory for making additions to your workspace is `src/workspaces`.
-Remember to add workspace files there, and then make sure to add
-a require the for new namespace in the `workspaces.cljs` file.
+
+IMPORTANT: Any namespace ending in `-ws` will be auto-detected.
 
 === Workspaces and CSRF
 
@@ -233,7 +257,12 @@ make sure your workspaces js file isn't deployed to production.
 
 == Standalone Runnable Jar (Production, with advanced optimized client js)
 
+This project includes a `project.clj` file that is configure for building an Uberjar.
+
+WARNING: The only purpose of the `project.clj` file is uberjar generation, since at the time of this
+release `depstar` wasn't fully sufficient IMO (no AOT compile or manifest generation).
+
 ```
 lein uberjar
-java -jar target/{{name}}.jar
+java -jar target/{{sanitized}}.jar
 ```

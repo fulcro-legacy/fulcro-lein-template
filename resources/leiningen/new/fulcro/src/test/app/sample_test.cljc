@@ -1,9 +1,10 @@
-(ns {{name}}.sample-spec
+(ns {{name}}.sample-test
   (:require
+    [clojure.test :refer [deftest]]
     [fulcro-spec.core :refer [specification provided behavior assertions]]))
 
 ; Tests for both client and server
-(specification "Sample Spec"
+(deftest sample-test
   (behavior "addition computes addition correctly"
     (assertions
       "with positive integers"

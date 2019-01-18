@@ -1,13 +1,15 @@
 (ns {{name}}.server-components.middleware
   (:require
     [{{name}}.server-components.config :refer [config]]
+    [{{name}}.server-components.pathom :refer [parser]]
     [mount.core :refer [defstate]]
     [fulcro.server :as server]
     [ring.middleware.defaults :refer [wrap-defaults]]
     [ring.middleware.gzip :refer [wrap-gzip]]
     [ring.util.response :refer [response file-response resource-response]]
     [ring.util.response :as resp]
-    [hiccup.page :refer [html5]]))
+    [hiccup.page :refer [html5]]
+    [taoensso.timbre :as log]))
 
 (def ^:private not-found-handler
   (fn [req]
@@ -15,23 +17,15 @@
      :headers {"Content-Type" "text/plain"}
      :body    "NOPE"}))
 
-;; ================================================================================
-;; Replace this with a pathom Parser once you get past the beginner stage.
-;; This one supports the defquery-root, defquery-entity, and defmutation as
-;; defined in the book, but you'll have a much better time parsing queries with
-;; Pathom.
-;; ================================================================================
-(def server-parser (server/fulcro-parser))
 
 (defn wrap-api [handler uri]
   (fn [request]
     (if (= uri (:uri request))
       (server/handle-api-request
-        ;; Sub out a pathom parser here if you want to use pathom.
-        server-parser
+        parser
         ;; this map is `env`. Put other defstate things in this map and they'll be
-        ;; in the mutations/query env on server.
-        {:config config}
+        ;; added to the resolver/mutation env.
+        {:ring/request request}
         (:transit-params request))
       (handler request))))
 
@@ -40,6 +34,7 @@
 ;; in a js var for use by the client.
 ;; ================================================================================
 (defn index [csrf-token]
+  (log/debug "Serving index.html")
   (html5
     [:html {:lang "en"}
      [:head {:lang "en"}
@@ -53,7 +48,7 @@
      [:body
       [:div#app]
       [:script {:src "js/main/main.js"}]
-      [:script "{{js-name}}.client.init();"]]]))
+      [:script "{{sanitized}}.client.init();"]]]))
 
 ;; ================================================================================
 ;; Workspaces can be accessed via shadow's http server on http://localhost:8023/workspaces.html
@@ -61,6 +56,7 @@
 ;; page embeds the CSRF token, and is at `/wslive.html` on your server (i.e. port 3000).
 ;; ================================================================================
 (defn wslive [csrf-token]
+  (log/debug "Serving wslive.html")
   (html5
     [:html {:lang "en"}
      [:head {:lang "en"}
@@ -73,7 +69,7 @@
       [:script (str "var fulcro_network_csrf_token = '" csrf-token "';")]]
      [:body
       [:div#app]
-      [:script {:src "js/workspaces/main.js"}]]]))
+      [:script {:src "workspaces/js/main.js"}]]]))
 
 (defn wrap-html-routes [ring-handler]
   (fn [{:keys [uri anti-forgery-token] :as req}]
