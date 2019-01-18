@@ -1,4 +1,4 @@
-(ns app.server-components.config
+(ns {{name}}.server-components.config
   (:require
     [mount.core :refer [defstate args]]
     [fulcro.server :as server]

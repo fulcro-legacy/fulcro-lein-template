@@ -1,9 +1,9 @@
-(ns app.ui.root
+(ns {{name}}.ui.root
   (:require
     [fulcro.client.dom :as dom :refer [div ul li p h3]]
     [fulcro.client.primitives :as prim :refer [defsc]]
-    [app.model.user :as user]
-    [app.ui.components :as comp]
+    [{{name}}.model.user :as user]
+    [{{name}}.ui.components :as comp]
     [taoensso.timbre :as log]))
 
 (defsc User [this {:user/keys    [name]
@@ -33,7 +33,7 @@
         add some, be sure to reload the page and see it come back.")
       (p
         "Make sure you've installed Fulcro Inspect, and your Chrome devtools will let you examine all of the details
-        of the running app!"))
+        of the running {{name}}!"))
     (div :.ui.attached.segment
       (div :.content
         (div "Your system has the following users in the database:")

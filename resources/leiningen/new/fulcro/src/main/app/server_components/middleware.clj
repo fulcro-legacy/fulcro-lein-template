@@ -1,7 +1,7 @@
-(ns app.server-components.middleware
+(ns {{name}}.server-components.middleware
   (:require
-    [app.server-components.config :refer [config]]
-    [app.server-components.pathom :refer [parser]]
+    [{{name}}.server-components.config :refer [config]]
+    [{{name}}.server-components.pathom :refer [parser]]
     [mount.core :refer [defstate]]
     [fulcro.server :as server]
     [ring.middleware.defaults :refer [wrap-defaults]]
@@ -46,9 +46,9 @@
       [:link {:rel "shortcut icon" :href "data:image/x-icon;," :type "image/x-icon"}]
       [:script (str "var fulcro_network_csrf_token = '" csrf-token "';")]]
      [:body
-      [:div#app]
+      [:div#{{name}}]
       [:script {:src "js/main/main.js"}]
-      [:script "app.client.init();"]]]))
+      [:script "{{name}}.client.init();"]]]))
 
 ;; ================================================================================
 ;; Workspaces can be accessed via shadow's http server on http://localhost:8023/workspaces.html
@@ -68,7 +68,7 @@
       [:link {:rel "shortcut icon" :href "data:image/x-icon;," :type "image/x-icon"}]
       [:script (str "var fulcro_network_csrf_token = '" csrf-token "';")]]
      [:body
-      [:div#app]
+      [:div#{{name}}]
       [:script {:src "workspaces/js/main.js"}]]]))
 
 (defn wrap-html-routes [ring-handler]

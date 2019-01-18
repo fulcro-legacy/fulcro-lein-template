@@ -1,4 +1,4 @@
-(defproject app "0.1.0-SNAPSHOT"
+(defproject {{name}} "0.1.0-SNAPSHOT"
   :description "My Cool Project"
   :license {:name "MIT" :url "https://opensource.org/licenses/MIT"}
   :min-lein-version "2.8.1"
@@ -13,8 +13,8 @@
   :lein-tools-deps/config {:config-files [:install :user :project]
                            :aliases [:dev]}
 
-  :uberjar-name "app.jar"
-  :profiles {:uberjar {:main           app.server-main
+  :uberjar-name "{{name}}.jar"
+  :profiles {:uberjar {:main           {{name}}.server-main
                        :aot            :all
                        :jar-exclusions [#"public/js/test" #"public/js/workspaces" #"public/workspaces.html"]
                        :prep-tasks     ["clean" ["clean"]

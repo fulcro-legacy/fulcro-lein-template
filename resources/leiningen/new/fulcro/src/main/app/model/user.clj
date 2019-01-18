@@ -1,7 +1,7 @@
-(ns app.model.user
+(ns {{name}}.model.user
   (:require
     [com.wsscode.pathom.connect :as pc]
-    [app.server-components.pathom-wrappers :refer [defmutation defresolver]]
+    [{{name}}.server-components.pathom-wrappers :refer [defmutation defresolver]]
     [taoensso.timbre :as log]))
 
 (def user-database (atom {}))

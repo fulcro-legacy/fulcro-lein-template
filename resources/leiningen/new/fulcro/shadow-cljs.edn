@@ -4,10 +4,10 @@
                        :output-dir "resources/public/js/main"
                        :asset-path "/js/main"
 
-                       :modules    {:main {:entries [app.client]}}
+                       :modules    {:main {:entries [{{name}}.client]}}
 
-                       :devtools   {:after-load app.client/start
-                                    :preloads   [fulcro.inspect.preload app.development-preload]}}
+                       :devtools   {:after-load {{name}}.client/start
+                                    :preloads   [fulcro.inspect.preload {{name}}.development-preload]}}
 
           :test       {:target           :browser-test
                        :test-dir         "resources/public/js/test"

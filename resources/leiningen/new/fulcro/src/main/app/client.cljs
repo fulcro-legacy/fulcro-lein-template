@@ -1,13 +1,13 @@
-(ns app.client
+(ns {{name}}.client
   (:require [fulcro.client :as fc]
-            [app.ui.root :as root]
+            [{{name}}.ui.root :as root]
             [fulcro.client.network :as net]
             [fulcro.client.data-fetch :as df]))
 
 (defonce SPA (atom nil))
 
 (defn mount []
-  (reset! SPA (fc/mount @SPA root/Root "app")))
+  (reset! SPA (fc/mount @SPA root/Root "{{name}}")))
 
 (defn start []
   (mount))
@@ -20,8 +20,8 @@
 
 (defn ^:export init []
   (reset! SPA (fc/new-fulcro-client
-                :started-callback (fn [app]
-                                    (df/load app :all-users root/User))
+                :started-callback (fn [{{name}}]
+                                    (df/load {{name}} :all-users root/User))
                 ;; This ensures your client can talk to a CSRF-protected server.
                 ;; See middleware.clj to see how the token is embedded into the HTML
                 :networking {:remote (net/fulcro-http-remote

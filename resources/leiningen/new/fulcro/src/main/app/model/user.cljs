@@ -1,4 +1,4 @@
-(ns app.model.user
+(ns {{name}}.model.user
   (:require
     [fulcro.incubator.mutation-interface :as mi :refer [declare-mutation]]
     [fulcro.client.mutations :as m :refer [defmutation]]))

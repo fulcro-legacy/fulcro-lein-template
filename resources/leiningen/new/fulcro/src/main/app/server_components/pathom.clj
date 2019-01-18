@@ -1,4 +1,4 @@
-(ns app.server-components.pathom
+(ns {{name}}.server-components.pathom
   (:require
     [mount.core :refer [defstate]]
     [taoensso.timbre :as log]
@@ -8,11 +8,11 @@
     [clojure.core.async :as async]
 
     ;; Central registry
-    [app.server-components.pathom-wrappers :refer [pathom-registry]]
-    [app.server-components.config :refer [config]]
+    [{{name}}.server-components.pathom-wrappers :refer [pathom-registry]]
+    [{{name}}.server-components.config :refer [config]]
 
     ;; ALL namespaces that use pathom-wrappers MUST be included for auto-registration to work
-    app.model.user))
+    {{name}}.model.user))
 
 (defn preprocess-parser-plugin
   "Helper to create a plugin that can view/modify the env/tx of a top-level request.

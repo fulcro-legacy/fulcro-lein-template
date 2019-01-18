@@ -1,4 +1,4 @@
-(ns app.server-components.pathom-wrappers
+(ns {{name}}.server-components.pathom-wrappers
   (:require
     [clojure.spec.alpha :as s]
     [fulcro.server]
@@ -34,7 +34,7 @@
          (let [~env-arg env#
                ~params-arg params#]
            ~@body))
-       (app.server-components.pathom-wrappers/register! ~sym))))
+       ({{name}}.server-components.pathom-wrappers/register! ~sym))))
 
 (defmacro ^{:doc      "Defines a server-side PATHOM mutation. This macro can be \"resolved as\" defn for IDE recognition.
 
