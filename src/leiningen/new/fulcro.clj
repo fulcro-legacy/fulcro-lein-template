@@ -54,8 +54,8 @@
                   :sanitized (name-to-path name)}
         files    (paths render data)]
     (main/info "Generating Fulcro project.")
+    (main/info "IMPORTANT NOTE: The YouTube videos that use the template are out of date.  This template now uses Pathom for the server-side operations.")
+    (main/info "  Please see the Pathom documentation, and the comments in the files of your new project's source.")
+    (main/info "  Fulcro server defquery-* and defmutation WILL NOT WORK WITH THIS TEMPLATE unless you change the API handler to Fulcro's parser.")
     (apply ->files data files)))
-
-
-
 
