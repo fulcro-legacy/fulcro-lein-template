@@ -44,7 +44,7 @@
    ["src/main/{{sanitized}}/ui/components.cljs" (render "src/main/app/ui/components.cljs" data)]
    ["src/main/{{sanitized}}/ui/root.cljs" (render "src/main/app/ui/root.cljs" data)]
 
-   ["src/test/{{sanitized}}/sample_spec.cljc" (render "src/test/app/sample_spec.cljc" data)]])
+   ["src/test/{{sanitized}}/sample_test.cljc" (render "src/test/app/sample_test.cljc" data)]])
 
 (defn fulcro
   "Generates a simple Fulcro template project"

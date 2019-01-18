@@ -7,7 +7,7 @@
 (defonce SPA (atom nil))
 
 (defn mount []
-  (reset! SPA (fc/mount @SPA root/Root "{{name}}")))
+  (reset! SPA (fc/mount @SPA root/Root "app")))
 
 (defn start []
   (mount))
