@@ -1,4 +1,4 @@
-(ns {{name}}.ui.components
+(ns app.ui.components
   (:require
     [fulcro.client.primitives :as prim :refer [defsc]]
     [fulcro.client.dom :as dom]))

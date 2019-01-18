@@ -20,4 +20,6 @@ resources/private
 .lein-repl-history
 .shadow-cljs
 .nrepl-port
-resources/public/js/workspaces
+resources/public/js
+.cpcache
+resources/public/workspaces/js

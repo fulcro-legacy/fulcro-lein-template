@@ -1,20 +1,19 @@
-{:lein   {:profile "cljs,dev"}
+{:deps   {:aliases [:dev]}
  :nrepl  {:port 9000}
  :builds {:main       {:target     :browser
                        :output-dir "resources/public/js/main"
                        :asset-path "/js/main"
 
-                       :modules    {:main {:entries [{{name}}.client]}}
+                       :modules    {:main {:entries [app.client]}}
 
-                       :devtools   {:after-load {{name}}.client/start
-                                    :preloads   [fulcro.inspect.preload {{name}}.development-preload]}}
+                       :devtools   {:after-load app.client/start
+                                    :preloads   [fulcro.inspect.preload app.development-preload]}}
 
           :test       {:target           :browser-test
                        :test-dir         "resources/public/js/test"
-                       :ns-regexp        "-spec$"
+                       :ns-regexp        "-test$"
                        :compiler-options {:static-fns false ; required for mocking to work
                                           }
-                       :runner-ns        {{name}}.client-test-main
                        :devtools         {:http-port          8022
                                           :http-resource-root "public"
                                           :http-root          "resources/public/js/test"}}
@@ -23,13 +22,13 @@
                        :js-options       {:js-provider :shadow}
                        :compiler-options {:static-fns false} ; required for mocking to work
                        :output-to        "target/ci.js"
-                       :ns-regexp        "-spec$"}
+                       :ns-regexp        "-test$"}
 
-          :workspaces {:target     :browser
-                       :output-dir "resources/public/js/workspaces"
-                       :asset-path "/js/workspaces"
+          :workspaces {:target     nubank.workspaces.shadow-cljs.target
+                       :ns-regexp  "-(test|ws)$"
+                       :output-dir "resources/public/workspaces/js"
+                       :asset-path "/js"
                        :devtools   {:preloads           [fulcro.inspect.preload]
-                                    :http-root          "resources/public"
+                                    :http-root          "resources/public/workspaces"
                                     :http-port          8023
-                                    :http-resource-root "."}
-                       :modules    {:main {:entries [{{name}}.workspaces]}}}}}
+                                    :http-resource-root "."}}}}

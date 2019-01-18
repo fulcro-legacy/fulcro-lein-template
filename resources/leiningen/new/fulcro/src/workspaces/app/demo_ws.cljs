@@ -1,4 +1,4 @@
-(ns {{name}}.demo-ws
+(ns app.demo-ws
   (:require [fulcro.client.primitives :as fp]
             [fulcro.client.localized-dom :as dom]
             [nubank.workspaces.core :as ws]
