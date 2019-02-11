@@ -1,3 +1,7 @@
+2.0.36
+------
+- Fixed wslive build
+
 2.0.35
 ------
 - Version changes, moved to pathom on server, added more content,
