@@ -27,7 +27,7 @@ The main project source is in `src/main`.
 │       ├── js
 │       │   └── test
 │       │       └── index.html            For accessing fulcro-spec tests in dev mode
-│       └── workspaces.html               For accessing workspaces
+│       └── workspaces/index.html         For accessing workspaces
 ├── shadow-cljs.edn                       Shadow-CLJS Compiler config
 └── src
     ├── dev
@@ -108,7 +108,7 @@ use the *Builds* menu to enable/disable whichever builds you want watched/runnin
 Shadow-cljs will also start a web server for any builds that configure one. This
 template configures one for workspaces, and one for tests:
 
-- Workspaces: [http://localhost:8023](http://localhost:8023)
+- Workspaces: [http://localhost:8023/workspaces](http://localhost:8023/workspaces)
 - Tests: [http://localhost:8022](http://localhost:8022)
 
 See the server section below for working on the full-stack {{sanitized}} itself.
