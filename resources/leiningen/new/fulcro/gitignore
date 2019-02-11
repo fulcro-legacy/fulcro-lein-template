@@ -23,3 +23,4 @@ resources/private
 resources/public/js
 .cpcache
 resources/public/workspaces/js
+resources/public/workspaces/manifest.edn
