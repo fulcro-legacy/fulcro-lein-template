@@ -26,9 +26,9 @@
 
           :workspaces {:target     nubank.workspaces.shadow-cljs.target
                        :ns-regexp  "-(test|ws)$"
-                       :output-dir "resources/public/workspaces/js"
-                       :asset-path "/js"
+                       :output-dir "resources/public/workspaces"
+                       :asset-path "/workspaces"
                        :devtools   {:preloads           [fulcro.inspect.preload]
-                                    :http-root          "resources/public/workspaces"
+                                    :http-root          "resources/public"
                                     :http-port          8023
                                     :http-resource-root "."}}}}
