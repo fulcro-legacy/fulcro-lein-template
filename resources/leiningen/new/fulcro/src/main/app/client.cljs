@@ -19,12 +19,12 @@
     (net/wrap-fulcro-request)))
 
 (defn ^:export init []
-  (reset! SPA (fc/new-fulcro-client
-                :started-callback (fn [{{name}}]
-                                    (df/load {{name}} :all-users root/User))
-                ;; This ensures your client can talk to a CSRF-protected server.
-                ;; See middleware.clj to see how the token is embedded into the HTML
-                :networking {:remote (net/fulcro-http-remote
-                                       {:url                "/api"
-                                        :request-middleware secured-request-middleware})}))
+  (reset! SPA (fc/make-fulcro-client
+                {:client-did-mount (fn [{{name}}]
+                                     (df/load {{name}} :all-users root/User))
+                 ;; This ensures your client can talk to a CSRF-protected server.
+                 ;; See middleware.clj to see how the token is embedded into the HTML
+                 :networking       {:remote (net/fulcro-http-remote
+                                              {:url                "/api"
+                                               :request-middleware secured-request-middleware})}}))
   (start))
