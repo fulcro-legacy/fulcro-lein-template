@@ -1,3 +1,7 @@
+2.0.39
+------
+- Version bumps and change constructor
+
 2.0.37
 ------
 - Fixed wslive build
