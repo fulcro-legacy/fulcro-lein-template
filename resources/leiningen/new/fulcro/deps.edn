@@ -29,4 +29,4 @@
                                      nubank/workspaces           {:mvn/version "1.0.3"},
                                      fulcrologic/fulcro-inspect  {:mvn/version "2.2.4"}
                                      org.clojure/tools.namespace {:mvn/version "0.3.0-alpha4"}
-                                     org.clojure/tools.nrepl     {:mvn/version "0.2.13"}}}}}
+                                     nrepl                       {:mvn/version "0.6.0"}}}}}
