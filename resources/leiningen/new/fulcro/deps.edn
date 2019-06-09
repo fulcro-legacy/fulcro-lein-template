@@ -10,7 +10,7 @@
            hiccup                       {:mvn/version "1.0.5"}
            http-kit                     {:mvn/version "2.3.0"}
            mount                        {:mvn/version "0.1.14"}
-           org.clojure/clojure          {:mvn/version "1.10.1-beta2"}
+           org.clojure/clojure          {:mvn/version "1.10.1"}
            org.clojure/core.async       {:mvn/version "0.4.490"}
            ring/ring-core               {:mvn/version "1.7.1"}
            ring/ring-defaults           {:mvn/version "0.3.2"}}
