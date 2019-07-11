@@ -1,3 +1,7 @@
+2.0.41
+------
+- Deps bump
+
 2.0.39
 ------
 - Version bumps and change constructor
